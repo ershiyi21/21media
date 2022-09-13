@@ -18,3 +18,8 @@ media21.sh:
 5.申请配置tmdb_api
 
 6.配置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器jackeet,下载器qbittorrent.
+
+使用方法：
+```
+apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
+```
