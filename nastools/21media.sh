@@ -117,7 +117,7 @@ echo "#!/bin/bash
 local_dir=/home/nastools/media/storage/
 remote_dir=$1" > /home/shh/nasup.sh
 
-echo 'log_dir=/home/log/nasup.sh
+echo 'log_dir=/home/log/nasup.log
 rclone_config_dir=/home/shh/rclone.conf
 libraryrefresh_dir=/home/shh/libraryrefresh.py
 
