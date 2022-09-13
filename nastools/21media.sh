@@ -165,7 +165,9 @@ done' >> /home/shh/nasup.sh
 
 #设置nas.sh脚本开机启动
 echo "开始设置nas.sh脚本开机启动"
-echo "@reboot bash /home/shh/nasup.sh" >> /etc/crontab
+crontab -l > crontab_test
+echo "@reboot bash /home/shh/nasup.sh" > crontab_test
+crontab crontab_test
 
 #生成emby自动扫库脚本
 echo "开始生成emby自动扫库脚本"
