@@ -5,6 +5,34 @@ media21.sh:
 
 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 
+使用方法：
+```
+sudo -i
+apt install wget -y 
+wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh 
+chmod +x 21media.sh
+bash 21media.sh "盘符:路径" "emby_url" "emby_api_key"
+```
+
+登陆地址：
+
+1.nas-tools:
+```
+http://ip:3000
+```
+2.jackett:
+```
+http://ip:47555
+```
+3.qbittorrent
+```
+http://ip:8080
+```
+4.chinesesubfinder
+```
+http://ip:19035
+```
+
 安装后：
 
 1.编辑rclone配置文件：/home/shh/rclone.conf
@@ -19,11 +47,3 @@ media21.sh:
 
 6.配置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器jackeet,下载器qbittorrent.
 
-使用方法：
-```
-sudo -i
-apt install wget -y 
-wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh 
-chmod +x 21media.sh
-bash 21media.sh "盘符:路径" "emby_url" "emby_api_key"
-```
