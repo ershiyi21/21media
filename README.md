@@ -21,6 +21,7 @@ media21.sh:
 
 使用方法：
 ```
+sudo -i
 apt install wget -y 
 wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh 
 chmod +x 21media.sh
