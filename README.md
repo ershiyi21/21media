@@ -1,11 +1,10 @@
 # mediascript
-media21.sh:
-
-原创个人自用脚本.仅适用于ubuntu x86系统.
+media21.sh.原创个人自用脚本.仅适用于ubuntu x86系统.
 
 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 
 使用方法：
+
 root权限
 ```
 sudo -i
