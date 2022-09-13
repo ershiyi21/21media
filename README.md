@@ -5,23 +5,23 @@ media21.sh.原创个人自用脚本.仅适用于ubuntu x86系统.
 
 使用方法：
 
-root权限
+1.root权限
 ```
 sudo -i
 ```
-下载wget
+2.下载wget
 ```
 apt install wget -y 
 ```
-下载21media.sh
+3.下载21media.sh
 ```
 wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh
 ```
-授于执行权限
+4.授于执行权限
 ```
 chmod +x 21media.sh
 ```
-执行脚本，注意替换""里面内容为自己配置
+5.执行脚本，注意替换""里面内容为自己配置
 ```
 bash 21media.sh "盘符:路径" "emby_url" "emby_api_key"
 ```
