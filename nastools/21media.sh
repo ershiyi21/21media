@@ -57,8 +57,8 @@ touch /home/shh/rclone.conf
 echo "开始安装nas-tools"
 
 #下载nas-tools配置文件
-wget -P /home/nastools/config https://github.com/ershiyi21/mediascript/blob/main/nastools/config.yaml
-wget -P /home/nastools/config https://github.com/ershiyi21/mediascript/blob/main/nastools/default-category.yaml
+wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/config.yaml
+wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/default-category.yaml
 
 #nas-tools运行docker容器
 docker run -d  \
