@@ -119,6 +119,7 @@ remote_dir=$1" > /home/shh/nasup.sh
 
 echo 'log_dir=/home/log/nasup.log
 rclone_config_dir=/home/shh/rclone.conf
+rclone_log_dir=/home/log/rclone.log
 libraryrefresh_dir=/home/shh/libraryrefresh.py
 
 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始运行脚本" >> ${log_dir}
@@ -133,7 +134,7 @@ do
     if [ 0 == $count ];then
        echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone上传开始" >> ${log_dir}
        /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
-       --config ${rclone_config_dir} >> ${log_dir} 2>&1 &&
+       --config ${rclone_config_dir} >> ${rclone_log_dir} 2>&1 &&
        echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone上传完成" \
        >> ${log_dir}
        while 
@@ -141,8 +142,8 @@ do
        do
 	 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 仍有文件存在，再次上传" \
 	 >> ${log_dir}
-	 /usr/bin/rclone move -v "$dir" "/" --config ${rclone_config_dir} \
-	 >> ${log_dir} 2>&1 &&
+	 /usr/bin/rclone move -v ${dir} "/" --config ${rclone_config_dir} \
+	 >> ${rclone_log_dir} 2>&1 &&
          echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone再次上传完成" \
 	 >> ${log_dir}   
        done
