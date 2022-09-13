@@ -1,0 +1,37 @@
+# 配置电影的分类策略， 配置为空或者不配置该项则不启用电影分类
+movie:
+  动漫: 
+    genre_ids: '16'
+  华语: 
+    original_language: 'zh,cn,bo,za'
+  日韩: 
+    original_language: 'ko,ja'
+  欧美: 
+    original_language: 'en,fr,de,es,it,sv,fi,da,nl,pt,ru'
+  未分类:
+  
+#配置电视剧的分类策略， 配置为空或者不配置该项则不启用电视剧分类
+tv:
+  儿童:
+    genre_ids: '10762'
+  综艺:
+    genre_ids: '10764,10767'
+  纪录片:
+    genre_ids: '99'
+  国产剧:
+    origin_country: 'CN,TW,HK'
+  欧美剧:
+    origin_country: 'US,FR,GB,DE,ES,IT,NL,PT,RU,UK'
+  日韩剧:
+    origin_country: 'JP,KP,KR,TH,IN,SG'
+  未分类:
+
+# 配置动漫的分类策略， 配置为空或者不配置该项则不启用动漫分类
+anime:
+  # 如果你的anime_path动漫目录已经直接设置到了动漫子目录，则这个分类可以取消
+  国内:
+    # 匹配 genre_ids 内容类型，16是动漫
+    origin_country: 'CN'
+    genre_ids: '16'
+  国外:
+    genre_ids: '16'
