@@ -21,5 +21,8 @@ media21.sh:
 
 使用方法：
 ```
-apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
+apt install wget -y 
+wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh 
+chmod +x 21media.sh
+bash 21media.sh "盘符:路径" "emby_url" "emby_api_key"
 ```
