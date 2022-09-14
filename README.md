@@ -53,7 +53,7 @@ http://ip:19035
 
 3.初始化jackeet,复制api_key
 
-4.初始化cnsub字幕工具，打开实验室功能，生成api_key保存，开启进程守护
+4.初始化chinesesubfinder字幕工具，打开实验室功能，生成api_key保存，开启进程守护
 
 5.申请配置tmdb_api
 
