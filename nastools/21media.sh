@@ -139,9 +139,11 @@ do
     sleep 3m					 	
     count=`ps -ef |grep nasup.sh |grep -v "grep" |wc -l`
     if [ 0 == $count ];then
-       echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" >> ${log_dir}
-       /usr/bin/rclone move -v ${local_dir} ${remote_dir} --transfers 10 \
-       --config ${rclone_config_dir} >> ${rclone_log_dir} 2>&1 &&
+       echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" \
+       >> ${log_dir}
+       /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
+       --transfers 10 --config ${rclone_config_dir} \
+       >> ${rclone_log_dir} 2>&1 &&
        echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传完成" \
        >> ${log_dir}
        while 
@@ -149,8 +151,9 @@ do
        do
 	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 仍有文件存在，再次上传" \
 	 >> ${log_dir}
-	 /usr/bin/rclone move -v ${local_dir} ${remote_dir} --transfers 10 \
-	 --config ${rclone_config_dir} >> ${rclone_log_dir} 2>&1 &&
+	 /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
+	 --transfers 10 --config ${rclone_config_dir} \
+	 >> ${rclone_log_dir} 2>&1 &&
          echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone再次上传完成" \
 	 >> ${log_dir}   
        done
