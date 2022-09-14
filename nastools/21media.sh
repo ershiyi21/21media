@@ -127,7 +127,7 @@ echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始运行脚本" >> ${log_dir}
 while
 inotifywait -r $local_dir -e modify,delete,create,attrib,move;
 do  
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')] 检测到文件异动,休眠10分钟，等待字幕下载" \
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,休眠10分钟，等待字幕下载" \
     >> ${log_dir}
     sleep 10m					 	
     count=`ps -ef |grep rclone |grep -v "grep" |wc -l`
