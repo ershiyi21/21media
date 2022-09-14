@@ -122,7 +122,7 @@ rclone_config_dir=/home/shh/rclone.conf
 rclone_log_dir=/home/log/rclone.log
 libraryrefresh_dir=/home/shh/libraryrefresh.py
 
-echo "[$(date '+%Y-%m-%d %H:%M:%S')] 开始运行脚本" >> ${log_dir}
+echo "[$(date "+%Y-%m-%d %H:%M:%S")] 开始运行脚本" >> ${log_dir}
 
 while
 inotifywait -r $local_dir -e modify,delete,create,attrib,move;
