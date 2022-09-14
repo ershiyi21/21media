@@ -1,5 +1,5 @@
 # media21
-media21.sh.原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
+原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
 
 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 
