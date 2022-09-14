@@ -1,4 +1,4 @@
-# mediascript
+# media21
 media21.sh.原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
 
 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
@@ -15,7 +15,7 @@ apt install wget -y
 ```
 3.下载21media.sh
 ```
-wget https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/21media.sh
+wget https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
 ```
 4.授于执行权限
 ```
