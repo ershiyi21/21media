@@ -137,7 +137,7 @@ do
     echo "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,休眠3分钟，nfo识别字幕下载" \
     >> ${log_dir}
     sleep 3m					 	
-    count=`ps -ef |grep rclone |grep -v "grep" |wc -l`
+    count=`ps -ef |grep nasup.sh |grep -v "grep" |wc -l`
     if [ 0 == $count ];then
        echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" >> ${log_dir}
        /usr/bin/rclone move -v ${local_dir} ${remote_dir} --transfers 10 \
@@ -157,7 +157,7 @@ do
 	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 文件夹已无文件存在" \
 	 >> ${log_dir}  
     else
-	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone已在运行，避免死机，退出脚本" \
+	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 脚本已在运行，即将退出" \
 	 >> ${log_dir}
 	 exit
     fi
