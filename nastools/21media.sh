@@ -10,6 +10,13 @@ sudo apt-get -y dist-upgrade
 sudo apt-get clean
 sudo apt-get autoremove
 
+#设置北京时间
+sudo apt install ntp -y
+sudo apt install ntpdate -y
+rm -rf /etc/localtime
+ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+ntpdate us.pool.ntp.org
+
 #安装docker
 echo "安装docker"
 wget -qO- get.docker.com | bash
@@ -54,7 +61,7 @@ mkdir /home/log
 touch /home/shh/rclone.conf
 
 #安装nas-tools
-echo "开始安装nas-tools"
+echo "安装nas-tools"
 
 #下载nas-tools配置文件
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/config.yaml
@@ -75,7 +82,7 @@ docker run -d  \
     jxxghp/nas-tools
 
 #安装字幕下载器chinesesubfinder	
-echo "开始安装chinesesubfinder"
+echo "安装chinesesubfinder"
 docker run -d \
     --restart=always \
     -v /home/cnsub/config:/config   `# 冒号左边请修改为你想在主机上保存配置、日志等文件的路径` \
@@ -94,7 +101,7 @@ docker run -d \
     allanpk716/chinesesubfinder	
 
 #安装种子索引器jackett
-echo "开始安装jackett"
+echo "安装jackett"
 docker run -d \
   --restart=always \
   --name=jackett1 \
@@ -112,7 +119,7 @@ docker run -d \
 apt install inotify-tools -y
 
 #生成rclone自动上传脚本nasup.sh
-echo "开始生成脚本nasup.sh"
+echo "生成脚本nasup.sh"
 echo "#!/bin/bash
 local_dir=/home/nastools/media/storage/
 remote_dir=$1" > /home/shh/nasup.sh
@@ -164,13 +171,13 @@ do
 done' >> /home/shh/nasup.sh
 
 #设置nas.sh脚本开机启动
-echo "开始设置nas.sh脚本开机启动"
+echo "设置nas.sh脚本开机启动"
 crontab -l > crontab_test
 echo "@reboot bash /home/shh/nasup.sh" >> crontab_test
 crontab crontab_test
 
 #生成emby自动扫库脚本
-echo "开始生成emby自动扫库脚本"
+echo "生成emby自动扫库脚本"
 
 echo "import requests
 
@@ -187,7 +194,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
 " > /home/shh/libraryrefresh.py
 
 #安装qbittorrent
- echo "开始安装qbittorrent"
+ echo "安装qbittorrent"
  rm -rf "/usr/local/bin/x86_64-qbittorrent-nox"
  wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.7/x86_64-qbittorrent-nox &&
  chmod 700 "/usr/local/bin/x86_64-qbittorrent-nox" &&
@@ -208,7 +215,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
  echo "qbit脚本安装完毕"
  
 #开启bbr
- echo "即将开启bbr"
+ echo "开启原版bbr"
  echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
  echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
  sysctl -p
