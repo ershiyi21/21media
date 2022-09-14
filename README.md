@@ -47,7 +47,7 @@ http://ip:19035
 
 安装后：
 
-1.复制rclone配置文件到：/home/shh/rclone.conf
+1.复制rclone配置文件：/home/shh/rclone.conf
 
 2.修改qbittorrent用户名,密码.默认用户名：admin 密码：adminadmin
 
