@@ -132,35 +132,35 @@ do
     sleep 10m					 	
     count=`ps -ef |grep rclone |grep -v "grep" |wc -l`
     if [ 0 == $count ];then
-       echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone上传开始" >> ${log_dir}
+       echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" >> ${log_dir}
        /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
        --config ${rclone_config_dir} >> ${rclone_log_dir} 2>&1 &&
-       echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone上传完成" \
+       echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传完成" \
        >> ${log_dir}
        while 
        [ ! `/usr/bin/rclone ls ${local_dir} | wc -l` -eq 0 ]
        do
-	 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 仍有文件存在，再次上传" \
+	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 仍有文件存在，再次上传" \
 	 >> ${log_dir}
-	 /usr/bin/rclone move -v ${local_dir} ${remote_dir} --config ${rclone_config_dir} \
-	 >> ${rclone_log_dir} 2>&1 &&
-         echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone再次上传完成" \
+	 /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
+	 --config ${rclone_config_dir} >> ${rclone_log_dir} 2>&1 &&
+         echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone再次上传完成" \
 	 >> ${log_dir}   
        done
-	 echo "[$(date '+%Y-%m-%d %H:%M:%S')] 文件夹已无文件存在" \
+	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 文件夹已无文件存在" \
 	 >> ${log_dir}  
     else
-	 echo "[$(date '+%Y-%m-%d %H:%M:%S')] rclone已在运行，避免死机，退出脚本" \
+	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone已在运行，避免死机，退出脚本" \
 	 >> ${log_dir}
 	 exit
     fi
-    echo "[$(date '+%Y-%m-%d %H:%M:%S')]执行扫库命令" >> ${log_dir}
+    echo "[$(date "+%Y-%m-%d %H:%M:%S")]执行扫库命令" >> ${log_dir}
     if /usr/bin/python3 ${libraryrefresh_dir};then
-       echo "[$(date '+%Y-%m-%d %H:%M:%S')]自动扫库正常" >> ${log_dir}
+       echo "[$(date "+%Y-%m-%d %H:%M:%S")]自动扫库正常" >> ${log_dir}
     else 
-       echo "[$(date '+% Y-%m-%d %H:%M:%S')]自动扫库失败" >> ${log_dir}
+       echo "[$(date "+% Y-%m-%d %H:%M:%S")]自动扫库失败" >> ${log_dir}
     fi	
-       echo "[$(date '+%Y-%m-%d %H:%M:%S')] 再次监控文件夹变化" >> ${log_dir}
+       echo "[$(date "+%Y-%m-%d %H:%M:%S")] 再次监控文件夹变化" >> ${log_dir}
 done' >> /home/shh/nasup.sh
 
 #设置nas.sh脚本开机启动
@@ -224,9 +224,9 @@ chmod +x /home/shh/libraryrefresh.py
 echo "即将重启"
 reboot
  
-#https://github.com/ershiyi21/mediascript.原创个人自用脚本.仅适用于ubuntu x86系统.
+#https://github.com/ershiyi21/mediascript.原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
-#编辑rclone配置文件：/home/shh/rclone.conf
+#复制rclone配置文件到：/home/shh/rclone.conf
 #修改qbittorrent用户名,密码.默认用户名：admin 密码：adminadmin
 #初始化jackeet,复制api_key
 #初始化cnsub字幕工具，打开实验室功能，生成api_key保存，开启进程守护
