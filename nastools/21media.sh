@@ -238,4 +238,5 @@ reboot
 #初始化jackeet,复制api_key
 #初始化cnsub字幕工具，打开实验室功能，生成api_key保存，开启进程守护
 #申请配置tmdb_api
+#运行emby自动扫库命令需要python环境
 #配置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器jackeet,下载器qbittorrent.
