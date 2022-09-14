@@ -166,7 +166,7 @@ done' >> /home/shh/nasup.sh
 #设置nas.sh脚本开机启动
 echo "开始设置nas.sh脚本开机启动"
 crontab -l > crontab_test
-echo "@reboot bash /home/shh/nasup.sh" > crontab_test
+echo "@reboot bash /home/shh/nasup.sh" >> crontab_test
 crontab crontab_test
 
 #生成emby自动扫库脚本
@@ -185,12 +185,6 @@ params = {
 
 response = requests.post('${emby_url}/emby/Library/Refresh', params=params, headers=headers)
 " > /home/shh/libraryrefresh.py
-
-
-
-
-echo "添加rclone自动上传脚本开机自启"
-echo "@reboot bash /home/shh/nasup.sh" >> /etc/crontab
 
 #安装qbittorrent
  echo "开始安装qbittorrent"
