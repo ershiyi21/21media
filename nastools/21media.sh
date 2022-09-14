@@ -231,7 +231,7 @@ chmod +x /home/shh/libraryrefresh.py
 echo "安装完成，即将重启"
 reboot
  
-#https://github.com/ershiyi21/mediascript.原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
+#https://github.com/ershiyi21/media21.原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 #复制rclone配置文件到：/home/shh/rclone.conf
 #修改qbittorrent用户名,密码.默认用户名：admin 密码：adminadmin
