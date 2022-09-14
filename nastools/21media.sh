@@ -221,7 +221,7 @@ chmod +x /home/shh/nasup.sh
 chmod +x /home/shh/libraryrefresh.py
 
 #重启
-echo "即将重启"
+echo "安装完成，即将重启"
 reboot
  
 #https://github.com/ershiyi21/mediascript.原创个人自用辣鸡脚本.仅适用于ubuntu x86系统.
