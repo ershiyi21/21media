@@ -104,7 +104,7 @@ docker run -d \
 echo "安装jackett"
 docker run -d \
   --restart=always \
-  --name=jackett1 \
+  --name=jackett \
   -e PUID=1000 \
   -e PGID=1000 \
   -e TZ=/Asia/Shanghai \
