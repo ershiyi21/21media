@@ -138,7 +138,7 @@ do
     >> ${log_dir}
     sleep 3m					 	
     count=`ps -ef |grep nasup.sh |grep -v "grep" |wc -l`
-    if [ $count -le 2 ];then     #crontab开机自启动,会有2行;如自己运行则1行
+    if [ $count -le 3 ];then     
        echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" \
        >> ${log_dir}
        /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
