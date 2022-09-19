@@ -133,44 +133,41 @@ echo "[$(date "+%Y-%m-%d %H:%M:%S")] 开始运行脚本" >> ${log_dir}
 
 while
 inotifywait -r $local_dir -e modify,delete,create,attrib,move;
+
 do  
-    echo "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,休眠3分钟，nfo识别字幕下载" \
-    >> ${log_dir}
-    sleep 3m					 	
-    count=`ps -ef |grep nasup.sh |grep -v "grep" |wc -l`
-    if [ $count -le 3 ];then     
-       echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" \
-       >> ${log_dir}
-       /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
-       --transfers 10 --config ${rclone_config_dir} \
-       >> ${rclone_log_dir} 2>&1 &&
-       echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传完成" \
-       >> ${log_dir}
-       while 
-       [ ! `/usr/bin/rclone ls ${local_dir} | wc -l` -eq 0 ]
-       do
-	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 仍有文件存在，再次上传" \
-	 >> ${log_dir}
-	 /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
-	 --transfers 10 --config ${rclone_config_dir} \
-	 >> ${rclone_log_dir} 2>&1 &&
-         echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone再次上传完成" \
-	 >> ${log_dir}   
-       done
-	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 文件夹已无文件存在" \
-	 >> ${log_dir}  
-    else
-	 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 脚本已在运行，即将退出" \
-	 >> ${log_dir}
-	 exit
-    fi
-    echo "[$(date "+%Y-%m-%d %H:%M:%S")]执行扫库命令" >> ${log_dir}
-    if /usr/bin/python3 ${libraryrefresh_dir};then
-       echo "[$(date "+%Y-%m-%d %H:%M:%S")]自动扫库正常" >> ${log_dir}
-    else 
-       echo "[$(date "+% Y-%m-%d %H:%M:%S")]自动扫库失败" >> ${log_dir}
-    fi	
-       echo "[$(date "+%Y-%m-%d %H:%M:%S")] 再次监控文件夹变化" >> ${log_dir}
+echo "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,休眠1分钟，nfo识别字幕下载" \
+>> ${log_dir}
+sleep 1m
+
+echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传开始" >> ${log_dir}
+/usr/bin/rclone move -v ${local_dir} ${remote_dir} \
+--transfers 10 --config ${rclone_config_dir} >> ${rclone_log_dir} 2>&1 &&
+echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone上传完成" >> ${log_dir}
+   
+   while 
+   [ ! `/usr/bin/rclone ls ${local_dir} | wc -l` -eq 0 ]
+   
+   do
+   echo "[$(date "+%Y-%m-%d %H:%M:%S")] 仍有文件存在，再次上传" \
+   >> ${log_dir}
+   /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
+   --transfers 10 --config ${rclone_config_dir} \
+   >> ${rclone_log_dir} 2>&1 &&
+   echo "[$(date "+%Y-%m-%d %H:%M:%S")] rclone再次上传完成" \
+   >> ${log_dir}   
+   
+   done
+   
+   echo "[$(date "+%Y-%m-%d %H:%M:%S")] 文件夹已无文件存在" \
+   echo "[$(date "+%Y-%m-%d %H:%M:%S")]执行扫库命令" >> ${log_dir}
+   
+   if /usr/bin/python3 ${libraryrefresh_dir};then
+      echo "[$(date "+%Y-%m-%d %H:%M:%S")]自动扫库正常" >> ${log_dir}
+   else 
+      echo "[$(date "+% Y-%m-%d %H:%M:%S")]自动扫库失败" >> ${log_dir}
+   fi	
+      echo "[$(date "+%Y-%m-%d %H:%M:%S")] 再次监控文件夹变化" >> ${log_dir}
+
 done' >> /home/shh/nasup.sh
 
 #设置nas.sh脚本开机启动
