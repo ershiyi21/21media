@@ -310,6 +310,18 @@ reboot
 }
 
 21uninstall() {
+read -r -p "是否确定卸载脚本以及安装内容？(y/n,默认为否)" sureuninstall
+case $sureuninstall in
+  [Yy])
+     uninstall
+     ;;
+  *)
+     menu
+     ;;
+esac
+}
+
+uninstall() {
 mkdir /home/21backup
 cp /home/nastools/config/config.yaml /home/21backup
 cp /home/nastools/config/default-category.yaml /home/21backup
