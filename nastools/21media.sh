@@ -243,7 +243,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
  echo "1.安装docker版qbittorrent【默认情况】"
  echo "2.安装宿主机版qbittorrent【仅适用于debian&ubuntu x86系统，不支持ARM，而且可能存在奇怪问题】"
  echo "3.不安装qbittorrent"
- read -r -p "请输入: " qbittorrentinstall
+ read -r -p "请输入【默认为1】: " qbittorrentinstall
  case $qbittorrentinstall in
  1)
    mkdir /home/qbit
