@@ -342,6 +342,9 @@ case $qbituninstall in
       echo "不卸载qbittorrent"
       ;;
 esac
+crontab -l > crontab_test
+echo  > crontab_test
+crontab crontab_test
 echo "脚本卸载完毕，有缘江湖再见"
 }
 
