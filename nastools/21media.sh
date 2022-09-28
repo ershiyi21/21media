@@ -382,6 +382,8 @@ esac
 
 }
 
+menu
+
 #https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu x86系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 #后续可通过输入 21media 打开脚本启动界面
