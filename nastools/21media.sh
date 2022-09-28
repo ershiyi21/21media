@@ -126,7 +126,7 @@ docker run -d  \
     jxxghp/nas-tools
 
 #安装字幕下载器chinesesubfinder	
-read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ (y/n，默认安装) cnsubinstall
+read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ (y/n，默认安装): " cnsubinstall
 case $cnsubinstall in
   [yY])   
     echo "开始安装字幕下载器chinesesubfinder"
@@ -275,7 +275,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
 " > /home/shh/libraryrefresh.py
 
 #安装qbittorrent
- read -r -p "是否安装qbittorrent？ (y/n,默认安装) qbitinstall
+ read -r -p "是否安装qbittorrent？ (y/n,默认安装): " qbitinstall
  case $qbittorrent in
  [Yy])
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
@@ -355,7 +355,7 @@ docker rmi nas-tooks jackett cnsub
 rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh
 systemctl stop qbit
 systemctl disable qbit
-read -r -p "是否卸载rclone？(y/n,默认卸载) rcloneuninstall
+read -r -p "是否卸载rclone？(y/n,默认卸载): " rcloneuninstall
 case $rcloneunstall in 
   [yY])
       rm -rf /root/.config/rclone/rclone.conf /usr/bin/rclone /usr/local/share/man/man1/rclone.1 /etc/systemd/system/rclone.service
@@ -364,7 +364,7 @@ case $rcloneunstall in
       echo "不卸载rclone"
       ;;
   esac
-read -r -p "是否卸载qbittorrent？(y/n,默认卸载) qbituninstall
+read -r -p "是否卸载qbittorrent？(y/n,默认卸载): " qbituninstall
 case $qbituninstall in 
   [yY])
       rm -rf /usr/local/bin/x86_64-qbittorrent-nox /usr/local/etc/qBittorrent
