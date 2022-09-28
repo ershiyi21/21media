@@ -273,9 +273,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    echo "检测到qbittorrent已安装，跳过"
    fi
    ;;
- *)
-   echo "不安装qbittorrent"
-   ;;
+ 
 esac
 
 #开启bbr
