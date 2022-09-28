@@ -287,7 +287,6 @@ if [ $? -eq 1 ]; then
  sysctl -p
  lsmod | grep bbr 
  echo "若输出【tcp_bbr 20480  1】即表示成功开启bbr"
-else 
 fi
  
 #重启
