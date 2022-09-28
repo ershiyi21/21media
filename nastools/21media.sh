@@ -10,25 +10,6 @@ echo "4.rclone上传日志"
 echo "====================================="
 read -r -p "请选择:" selectnum
 
-case $selectnum in
-1) 
-  21install
-  ;;
-2) 
-  21uninstall
-  ;;
-3)
-  21nasuplog
-  ;;
-4)
-  21rclonelog
-  ;;
-esac
-
-if [ ! -f /root/21media.txt ]; then
-  echo "alias 21mediastop/start="sh /root/21media.sh" >> /etc/profile \
-  && touch /root/21media.txt
-fi
 
 21install() {
 # check root
@@ -384,8 +365,25 @@ cat /home/log/nasup.log
 cat /home/log/rclone.log
 }
 
+case $selectnum in
+1) 
+  21install
+  ;;
+2) 
+  21uninstall
+  ;;
+3)
+  21nasuplog
+  ;;
+4)
+  21rclonelog
+  ;;
+esac
 
-
+if [ ! -f /root/21media.txt ]; then
+  echo "alias 21mediastop/start="sh /root/21media.sh" >> /etc/profile \
+  && touch /root/21media.txt
+fi
 #https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu x86系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 #后续可通过输入 21media 打开脚本启动界面
