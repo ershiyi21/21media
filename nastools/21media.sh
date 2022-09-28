@@ -5,7 +5,7 @@
 [[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
 
 #系统升级
-echo "ubuntu系统升级"
+echo "系统升级"
 sudo apt-get update
 sudo apt-get -y dist-upgrade
 sudo apt-get clean
