@@ -244,8 +244,8 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
 " > /home/shh/libraryrefresh.py
 
 #安装qbittorrent
- read -r -p "是否安装qbittorrent？ \(y/n,默认安装\): " qbitinstall
- case $qbittorrent in
+ read -r -p "是否安装qbittorrent？ \(y/n,默认安装\): " qbittorrentinstall
+ case $qbittorrentinstall in
  [Yy])
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
