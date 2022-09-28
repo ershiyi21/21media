@@ -273,7 +273,9 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    echo "检测到qbittorrent已安装，跳过"
    fi
    ;;
- 
+ *)
+   echo "不安装qbittorrent"
+   ;;
 esac
 
 #开启bbr
@@ -286,7 +288,6 @@ if [ $? -eq 1 ]; then
  lsmod | grep bbr 
  echo "若输出【tcp_bbr 20480  1】即表示成功开启bbr"
 fi
- 
 #重启
 echo "安装完成，5秒后重启
 后续可通过输入 21media 打开脚本启动界面
