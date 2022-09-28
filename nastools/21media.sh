@@ -247,9 +247,28 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
 " > /home/shh/libraryrefresh.py
 
 #安装qbittorrent
- read -r -p "是否安装qbittorrent？ \(y/n,默认安装\): " qbittorrentinstall
+ echo "1.安装docker版qbittorrent【默认情况】"
+ echo "2.安装宿主机版qbittorrent【仅适用于debian&ubuntu x86系统，可能存在奇怪问题】"
+ echo "3.不安装qbittorrent"
+ read -r -p "请输入: " qbittorrentinstall
  case $qbittorrentinstall in
- [Yy])
+ 1)
+   mkdir /home/qbit
+   docker run -d \
+  --name=qbittorrent \
+  -e PUID=0 \
+  -e PGID=0 \
+  -e TZ=/Asia/Shanghai \
+  -e WEBUI_PORT=8080 \
+  -p 8080:8080 \
+  -p 6881:6881 \
+  -p 6881:6881/udp \
+  -v /home/qbit/config:/config \
+  -v /home/nastools/media:/home/nastools/media \
+  --restart unless-stopped \
+  lscr.io/linuxserver/qbittorrent:latest
+  ;;
+ 2)
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
    echo "开始安装qbittorrent"
@@ -276,7 +295,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    echo "检测到qbittorrent已安装，跳过"
    fi
    ;;
- *)
+ 3)
    echo "不安装qbittorrent"
    ;;
 esac
@@ -307,7 +326,7 @@ echo "rclone配置文件已备份到 /home/shh"
 docker stop nas-tools jackett cnsub
 docker rm nas-tools jackett cnsub
 docker rmi nas-tools jackett chinesesubfinder
-rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh /root/21media.sh
+rm -rf /home/cnsub /home/jackett /home/log /home/shh /root/21media.sh
 systemctl stop qbit
 systemctl disable qbit
 read -r -p "是否卸载rclone？\(y/n,默认卸载\): " rcloneuninstall
@@ -319,13 +338,15 @@ case $rcloneunstall in
       echo "不卸载rclone"
       ;;
   esac
-read -r -p "是否卸载qbittorrent？\(y/n,默认卸载\): " qbituninstall
+read -r -p "是否卸载qbittorrent以及下载内容？\(y/n,默认卸载\): " qbituninstall
 case $qbituninstall in 
   [yY])
       rm -rf /usr/local/bin/x86_64-qbittorrent-nox /usr/local/etc/qBittorrent
+      docker stop qbittorrent && docker rm qbittorrent && docker rmi qbittorrent
+      rm -rf /home/nastools /root/qbit
       ;;
     *)
-      echo "不卸载rclone"
+      echo "不卸载qbittorrent"
       ;;
 esac
 echo "脚本卸载完毕，有缘江湖再见"
