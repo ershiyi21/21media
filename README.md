@@ -12,7 +12,7 @@ cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiy
 ```
 bash /root/21media.sh
 ```
-## 后续操作：
+## 安装后指南：
 
 1、复制rclone配置文件到目录/home/shh/下,并且重启服务器.若未进行该操作，则不会进行进行rclone上传.
 
