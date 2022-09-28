@@ -8,7 +8,7 @@
 ```
 cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
 ```
-安装后：可通过输入 21media 打开脚本启动界面
+## 安装后打开脚本启动界面
 ```
 21media
 ```
