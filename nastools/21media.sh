@@ -336,6 +336,10 @@ cat /home/log/nasup.log
 cat /home/log/rclone.log
 }
 
+21nas-toolslog() {
+cat /home/nastools/config/logs/run.txt
+}
+
 update() {
 rm /root/21edia.sh
 wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
@@ -352,8 +356,10 @@ echo "==============脚本管理================"
 echo "1.进行安装"
 echo "2.升级脚本"
 echo "3.卸载脚本"
-echo "4.nasup脚本运行日志"
-echo "5.rclone程序上传日志"
+echo "--------------日志查询----------------"
+echo "4.nas-tools程序日志"
+echo "5.nasup.sh脚本日志"
+echo "6.rclone程序日志"
 echo "====================================="
 read -r -p "请选择:" selectnum
 case $selectnum in
@@ -367,9 +373,12 @@ case $selectnum in
   21uninstall
   ;;
 4)
-  21nasuplog
+  21nas-toolslog
   ;;
 5)
+  21nasuplog
+  ;;
+6)
   21rclonelog
   ;;
 esac
