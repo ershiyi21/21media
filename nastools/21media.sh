@@ -47,7 +47,6 @@ mkdir -p /home/cnsub/browser
 
 mkdir /home/shh
 mkdir /home/log
-touch /home/shh/rclone.conf
 
 #安装nas-tools
 echo "开始安装nas-tools"
@@ -161,7 +160,7 @@ rclone_log_dir=/home/log/rclone.log
 libraryrefresh_dir=/home/shh/libraryrefresh.py
 
 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 开始运行脚本" >> ${log_dir}
-if [ ! -f "/home/shh/rclone.conf" ] ; then
+if [ ! -s "/home/shh/rclone.conf" ] ; then
 echo "rclone配置文件未复制到目录/home/shh/ 退出nasup脚本"
 exit
 fi
