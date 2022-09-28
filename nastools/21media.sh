@@ -1,32 +1,4 @@
 #!/bin/bash
-menu() {
-echo "作者:ershiyi21"
-echo "Github:https://github.com/ershiyi21/media21"
-echo "描述:在线媒体下载&管理一键安装脚本"
-echo "==============脚本管理================"
-echo "1.安装"
-echo "2.卸载脚本"
-echo "3.nasup脚本运行日志"
-echo "4.rclone上传日志"
-echo "====================================="
-read -r -p "请选择:" selectnum
-case $selectnum in
-1) 
-  21install
-  ;;
-2) 
-  21uninstall
-  ;;
-3)
-  21nasuplog
-  ;;
-4)
-  21rclonelog
-  ;;
-esac
-
-
-}
 
 21install() {
 # check root
@@ -380,6 +352,35 @@ cat /home/log/nasup.log
 
 21rclonelog() {
 cat /home/log/rclone.log
+}
+
+menu() {
+echo "作者:ershiyi21"
+echo "Github:https://github.com/ershiyi21/media21"
+echo "描述:在线媒体下载&管理一键安装脚本"
+echo "==============脚本管理================"
+echo "1.安装"
+echo "2.卸载脚本"
+echo "3.nasup脚本运行日志"
+echo "4.rclone上传日志"
+echo "====================================="
+read -r -p "请选择:" selectnum
+case $selectnum in
+1) 
+  21install
+  ;;
+2) 
+  21uninstall
+  ;;
+3)
+  21nasuplog
+  ;;
+4)
+  21rclonelog
+  ;;
+esac
+
+
 }
 
 #https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu x86系统.
