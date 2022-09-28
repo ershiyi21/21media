@@ -10,7 +10,7 @@ cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiy
 ```
 ## 安装后打开脚本启动界面
 ```
-21media
+bash /root/21media.sh
 ```
 ## 后续操作：
 
@@ -36,8 +36,4 @@ http://ip:3000
 6、初始化字幕chinesesubfinder下载工具，打开实验室功能，生成api_key保存，开启进程守护" 登录地址：
 ```
 http://ip:19035
-```
-7、安装后,打开脚本启动界面
-```
-bash /root/21media.sh
 ```
