@@ -156,7 +156,6 @@ read -r -p "rclone远端地址[格式,盘符:路径]: " remote_dir
 read -r -p "rclone上传线程数[默认为4]: " rclone_num
 if [ -z $rclone_num ]; then
 rclone_num=4
-else
 fi
 echo "#!/bin/bash
 local_dir=/home/nastools/media/storage/
