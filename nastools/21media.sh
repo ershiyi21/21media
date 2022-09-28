@@ -319,7 +319,7 @@ echo "rclone配置文件已备份到 /home/shh"
 docker stop nas-tools jackett cnsub
 docker rm nas-tools jackett cnsub
 docker rmi nas-tools jackett chinesesubfinder
-rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh /root/21media
+rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh /root/21media.sh
 systemctl stop qbit
 systemctl disable qbit
 read -r -p "是否卸载rclone？\(y/n,默认卸载\): " rcloneuninstall
@@ -351,34 +351,45 @@ cat /home/log/nasup.log
 cat /home/log/rclone.log
 }
 
+update() {
+rm /root/21edia.sh
+wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
+echo "更新完毕，即将退出脚本.打开脚本请手动运行：
+bash /root/21media.sh"
+exit
+}
+
 menu() {
 echo "作者:ershiyi21"
 echo "Github:https://github.com/ershiyi21/media21"
 echo "描述:在线媒体下载&管理一键安装脚本"
 echo "==============脚本管理================"
-echo "1.安装"
-echo "2.卸载脚本"
-echo "3.nasup脚本运行日志"
-echo "4.rclone上传日志"
+echo "1.进行安装"
+echo "2.升级脚本"
+echo "3.卸载脚本"
+echo "4.nasup脚本运行日志"
+echo "5.rclone程序上传日志"
 echo "====================================="
 read -r -p "请选择:" selectnum
 case $selectnum in
 1) 
   21install
   ;;
-2) 
+2)
+  update
+  ;;
+3) 
   21uninstall
   ;;
-3)
+4)
   21nasuplog
   ;;
-4)
+5)
   21rclonelog
   ;;
 esac
-
-
 }
+
 
 menu
 
