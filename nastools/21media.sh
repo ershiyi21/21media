@@ -25,10 +25,7 @@ case $selectnum in
   ;;
 esac
 
-if [ ! -f /root/21media.txt ]; then
-  echo "alias 21mediastop/start="sh /root/21media.sh" >> /etc/profile \
-  && touch /root/21media.txt
-fi
+
 }
 
 21install() {
