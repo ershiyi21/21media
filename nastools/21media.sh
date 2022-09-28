@@ -26,6 +26,9 @@ case $selectnum in
 esac
 
 21install() {
+# check root
+[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+
 #系统升级
 echo "ubuntu系统升级"
 sudo apt-get update
