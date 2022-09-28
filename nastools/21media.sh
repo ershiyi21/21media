@@ -325,7 +325,7 @@ cp /home/shh/rclone.conf /home/21backup
 echo "rclone配置文件已备份到 /home/shh" 
 docker stop nas-tools jackett cnsub
 docker rm nas-tools jackett cnsub
-docker rmi nas-tools jackett chinesesubfinder
+docker rmi jxxghp/nas-tools allanpk716/chinesesubfinder ghcr.io/linuxserver/jackett
 rm -rf /home/cnsub /home/jackett /home/log /home/shh /root/21media.sh
 systemctl stop qbit
 systemctl disable qbit
@@ -342,7 +342,7 @@ read -r -p "是否卸载qbittorrent以及下载内容？\(y/n,默认卸载\): " 
 case $qbituninstall in 
   [yY])
       rm -rf /usr/local/bin/x86_64-qbittorrent-nox /usr/local/etc/qBittorrent
-      docker stop qbittorrent && docker rm qbittorrent && docker rmi qbittorrent
+      docker stop qbittorrent && docker rm qbittorrent && docker rmi lscr.io/linuxserver/qbittorrent
       rm -rf /home/nastools /root/qbit
       ;;
     *)
