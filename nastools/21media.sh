@@ -316,10 +316,9 @@ cp /home/nastools/config/default-category.yaml /home/21backup
 echo "nas-tools配置文件已备份到 /home/21backup"
 cp /home/shh/rclone.conf /home/21backup
 echo "rclone配置文件已备份到 /home/shh" 
-docker stop nas-tools | docker rm nas-tools
-docker stop jackeet | docker rm jackett
-docker stop cnsub | docker rm cnsub
-docker rmi nas-tooks jackett cnsub
+docker stop nas-tools jackett cnsub
+docker rm nas-tools jackett cnsub
+docker rmi nas-tools jackett chinesesubfinder
 rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh /root/21media
 systemctl stop qbit
 systemctl disable qbit
