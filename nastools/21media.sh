@@ -25,6 +25,11 @@ case $selectnum in
   ;;
 esac
 
+if [ ! -f /root/21media.txt ]; then
+  echo "alias 21mediastop/start="sh /root/21media.sh" >> /etc/profile \
+  && touch /root/21media.txt
+fi
+
 21install() {
 # check root
 [[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
@@ -316,7 +321,6 @@ else
 fi
  
 #重启
-echo "alias 21mediastop/start="sh /root/21media.sh" >> /etc/profile
 echo "安装完成，5秒后重启
 后续可通过输入 21media 打开脚本启动界面
 
