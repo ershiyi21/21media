@@ -341,7 +341,7 @@ sleep 5s
 reboot
 }
 
-21unstall() {
+21uninstall() {
 mkdir /home/21backup
 cp /home/nastools/config/config.yaml /home/21backup
 cp /home/nastools/config/default-category.yaml /home/21backup
@@ -352,7 +352,7 @@ docker stop nas-tools | docker rm nas-tools
 docker stop jackeet | docker rm jackett
 docker stop cnsub | docker rm cnsub
 docker rmi nas-tooks jackett cnsub
-rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh
+rm -rf /home/cnsub /home/jackett /home/log /home/nastools /home/shh /root/21media
 systemctl stop qbit
 systemctl disable qbit
 read -r -p "是否卸载rclone？(y/n,默认卸载): " rcloneuninstall
