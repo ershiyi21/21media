@@ -4,13 +4,6 @@
 # check root
 [[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
 
-#系统升级
-echo "系统升级"
-sudo apt-get update
-sudo apt-get -y dist-upgrade
-sudo apt-get clean
-sudo apt-get autoremove
-
 #设置北京时区
 sudo apt install ntp -y
 sudo apt install ntpdate -y
@@ -411,6 +404,6 @@ esac
 
 menu
 
-#https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu x86系统.
+#https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
 #后续可通过输入 21media 打开脚本启动界面
