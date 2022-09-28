@@ -168,7 +168,10 @@ rclone_log_dir=/home/log/rclone.log
 libraryrefresh_dir=/home/shh/libraryrefresh.py
 
 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 开始运行脚本" >> ${log_dir}
-
+if [ ! -f "/home/shh/rclone.conf" ] ; then
+echo "rclone配置文件未复制到目录/home/shh/ 退出nasup脚本"
+exit
+fi
 while
 inotifywait -r $local_dir -e modify,delete,create,attrib,move;
 
