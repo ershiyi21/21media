@@ -17,17 +17,9 @@ cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiy
 1、复制rclone配置文件到目录下：/home/shh/
 
 2、修改qbittorrent用户名,密码
-登录地址：
+默认用户名：admin 默认密码：dminadmin 登录地址：
 ```
 http://ip:8080
-```
-默认用户名：
-```
-admin 
-```
-默认密码：
-```
-dminadmin
 ```
 3、初始化jackeet,复制api_key[未安装则跳过] 登录地址：
 ```
@@ -46,3 +38,6 @@ http://ip:3000
 http://ip:19035
 ```
 安装后：可通过输入 21media 打开脚本启动界面
+```
+21media
+```
