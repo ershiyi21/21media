@@ -33,9 +33,11 @@ dminadmin
 ```
 http://ip:47555
 ```
-4、申请tmdb_apikey，在nas-tools中配置
-
-5、置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.登录地址：
+4、注册tmdb账号，申请tmdb_apikey，并且在nas-tools中完成配置
+```
+https://www.themoviedb.org/settings/api
+```
+5、配置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.登录地址：
 ```
 http://ip:3000
 ```
