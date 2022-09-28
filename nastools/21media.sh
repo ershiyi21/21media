@@ -289,22 +289,7 @@ if [ $? -eq 1 ]; then
  echo "若输出【tcp_bbr 20480  1】即表示成功开启bbr"
 fi
 #重启
-echo "安装完成，5秒后重启
-后续可通过输入 21media 打开脚本启动界面
-
-后续操作：
-1、复制rclone配置文件到目录下：/home/shh/
-2、修改qbittorrent用户名,密码
-  登录地址：http://ip:8080
-  用户名：admin 
-  密码：dminadmin
-3、初始化jackeet,复制api_key[未安装则跳过]
-  登录地址：http://ip:47555
-4、申请tmdb_apikey，在nas-tools中配置
-5、置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.
-  登录地址：http://ip:3000
-6、初始化字幕下载工具，打开实验室功能，生成api_key保存，开启进程守护"
-  登录地址：http://ip:19035
+echo "安装完成，5秒后重启系统！！！"
 sleep 5s
 reboot
 }
