@@ -17,7 +17,7 @@ cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiy
 1、复制rclone配置文件到目录下：/home/shh/
 
 2、修改qbittorrent用户名,密码
-默认用户名：admin 默认密码：dminadmin 登录地址：
+默认用户名：admin 默认密码：adminadmin 登录地址：
 ```
 http://ip:8080
 ```
@@ -29,7 +29,7 @@ http://ip:47555
 ```
 https://www.themoviedb.org/settings/api
 ```
-5、配置nas-tools,默认登陆,用户名:admin 密码:password.基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.登录地址：
+5、配置nas-tools,默认登陆,用户名: admin 密码: password .基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.登录地址：
 ```
 http://ip:3000
 ```
@@ -37,7 +37,7 @@ http://ip:3000
 ```
 http://ip:19035
 ```
-安装后：可通过输入 21media 打开脚本启动界面
+7、安装后,打开脚本启动界面
 ```
-21media
+bash /root/21media.sh
 ```
