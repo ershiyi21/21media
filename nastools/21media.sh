@@ -341,7 +341,7 @@ cat /home/nastools/config/logs/run.txt
 }
 
 update() {
-rm /root/21edia.sh
+rm /root/21media.sh
 wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
 echo "更新完毕，即将退出脚本.打开脚本请手动运行：
 bash /root/21media.sh"
