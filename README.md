@@ -1,7 +1,7 @@
 # 在线媒体下载&管理一键安装脚本
 - 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.
 - 配置好nas-tools媒体库等设置.
-- 仅适用于debian&ubuntu x86系统.
+- 仅适用于debian&ubuntu系统.
 
 ## 一键安装脚本：
 
