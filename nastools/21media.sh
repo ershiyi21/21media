@@ -242,7 +242,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
  echo "3.不安装qbittorrent"
  read -r -p "请输入【默认为1】: " qbittorrentinstall
  case $qbittorrentinstall in
- 1)
+ [^(23)])
    mkdir /home/qbit
    docker run -d \
   --name=qbittorrent \
