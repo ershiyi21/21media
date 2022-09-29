@@ -12,9 +12,9 @@ cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiy
 
  注：tmdb_api申请地址：https://www.themoviedb.org/settings/api
 
-## 安装后打开脚本启动界面
+## 安装后打开脚本
 ```
-bash /root/21media.sh
+21media
 ```
 ## 安装后指南：
 1、删除文件/home/shh/rclone.conf，复制rclone配置文件到目录/home/shh/下,并且重启服务器.若未进行该操作，则不会进行进行rclone上传.
