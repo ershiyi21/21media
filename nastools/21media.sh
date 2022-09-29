@@ -36,15 +36,7 @@ fi
 echo "安装fuse"
 apt-get install fuse
 
-#创建需要的目录
-
-
-mkdir -p /home/jackett1/config
-mkdir -p /home/jackett1/downloads
-
-mkdir -p /home/cnsub/config
-mkdir -p /home/cnsub/browser
-
+#创建目录
 mkdir /home/shh
 mkdir /home/log
 
@@ -93,6 +85,8 @@ docker run -d  \
 read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ \(y/n，默认安装\): " cnsubinstall
 case $cnsubinstall in
   [yY])   
+    mkdir -p /home/cnsub/config
+    mkdir -p /home/cnsub/browser
     echo "开始安装字幕下载器chinesesubfinder"
     docker run -d \
     --restart=always \
@@ -121,6 +115,8 @@ esac
 read -r -p "nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？\(y/n，默认不安装\): " jackettinstall
 case $jackettinstall in
   [yY]) 
+     mkdir -p /home/jackett1/config
+     mkdir -p /home/jackett1/downloads
      echo "开始安装jackett..."
      docker run -d \
      --restart=always \
