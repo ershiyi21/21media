@@ -84,7 +84,10 @@ docker run -d  \
 #安装字幕下载器chinesesubfinder	
 read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ (y/n，默认安装): " cnsubinstall
 case $cnsubinstall in
-  [yY])   
+  [Nn])
+    echo "不安装字幕下载器chinesesubfinder"
+    ;;
+  *)   
     mkdir -p /home/cnsub/config
     mkdir -p /home/cnsub/browser
     echo "开始安装字幕下载器chinesesubfinder"
@@ -106,18 +109,12 @@ case $cnsubinstall in
     allanpk716/chinesesubfinder	
     echo "字幕下载器chinesesubfinder已安装完成"
     ;;
-  *)
-    echo "不安装字幕下载器chinesesubfinder"
-    ;;
 esac
 
 #安装种子索引器jacketta
 read -r -p "nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？(y/n，默认不安装): " jackettinstall
 case $jackettinstall in
-  [Nn])
-     echo "不安装jackett"
-     ;;
-  *) 
+  [Yy]) 
      mkdir -p /home/jackett1/config
      mkdir -p /home/jackett1/downloads
      echo "开始安装jackett..."
@@ -134,6 +131,9 @@ case $jackettinstall in
      --restart unless-stopped \
      ghcr.io/linuxserver/jackett
      echo "jackett安装完成"
+     ;;
+   *)
+     echo "不安装jackett"
      ;;
 esac
 
