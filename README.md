@@ -19,7 +19,6 @@ bash /root/21media.sh
 ## 安装后指南：
 
 1、删除文件/home/shh/rclone.conf，复制rclone配置文件到目录/home/shh/下,并且重启服务器.若未进行该操作，则不会进行进行rclone上传.
-
 2、修改qbittorrent用户名,密码
 默认用户名：admin 默认密码：adminadmin 登录地址：
 ```
