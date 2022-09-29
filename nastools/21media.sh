@@ -368,11 +368,8 @@ cat /home/nastools/config/logs/run.txt
 
 21update() {
 [[ -f /root/21media.sh ]] && rm /root/21media.sh
-[[ -f /usr/bin/21media ]] && rm /usr/bin/21media
-[[ -f /usr/sbin/21media ]] && rm /usr/sbin/21media
-[[ -f /home/shh/21media.sh ]] && rm /home/shh/21media.sh
 wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
-21shortcut
+cat /root/21media.sh | sudo tee /home/shh/21media.sh
 echo "更新完毕,即将退出脚本.可执行[21media]重新打开脚本."
 exit
 }
