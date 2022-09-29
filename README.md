@@ -3,7 +3,8 @@
 - 配置好nas-tools媒体库等设置.
 - 仅适用于debian&ubuntu系统.
 - nas-tools硬链接文件到其它目录，rclone实时借助api上传云端，做种&上传两不误
-- rclone上传线程可控，同时运行进程数数唯一，不会出现单文件多传或rclone重复运行导致服务器过载死机 
+- rclone上传线程可控，同时运行进程数数唯一，不会出现单文件多传或rclone重复运行导致服务器过载死机
+- 
 ## 一键安装脚本：
 ```
 cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
@@ -42,3 +43,9 @@ nas-tools借助qbittorrent下载pt/bt文件，然后监控qbittorrent下载情�
 同时，开机自启动的脚本nasup.sh会一直监控文件夹/home/nastools/storage，一旦发现增加文件，2分钟后会自动调用rclone move进行上传，直到文件夹/home/nastools/storage为空，即上传完成，然后自动进行emby扫库请求，emby成功添加新剧集的通知将发送到tg频道或者群组等,然后脚本nasup.sh重新继续监控文件夹/home/nastools/storage。
 
 注：emby入库tg通知需要自己配置，项目地址 https://github.com/bjoerns1983/Emby.Plugin.TelegramNotification
+
+## 媒体分类
+- 1.电影：动漫、华语、欧美、日韩、未分类
+- 2.剧集：国产剧、日韩剧、欧美剧、儿童、纪录片、综艺、未分类
+- 3.动漫：国内、国外 【动漫剧集单独分类】
+- 4.其它： 
