@@ -31,7 +31,7 @@ app:
   ssl_key:
   # 【TMDB API KEY】：需要在https://www.themoviedb.org/申请，必须配置，否则无法识别媒体资源和重命名
   # 以下地址需要网络能够正常访问：api.themoviedb.org、webservice.fanart.tv
-  rmt_tmdbkey:
+  
   # 【TMDB匹配模式】：normal、strict，normal模式下如使用文件名/种子名中的年份无法匹配到媒体信息，会去掉年份再匹配一次；strict模式则严格按文件中年份匹配
   # normal模式下会提升识别成功率，但也可能会导致误识别率增加；strict模式可以降低误识别率，但可能导致很多文件名/种子名中年份不正确的无法被识别（特别是剧集，需要是首播年份）
   rmt_match_mode: normal
@@ -83,9 +83,9 @@ media:
   # 电视剧占位符有：{title}：标题，{en_title}：英文标题，{original_title}：原语种标题，{original_name}：原文件名，{year}：年份，{edition}：版本(Bluray/WEB-DL等)，{videoFormat}：分辨率(1080p/4k等)，{videoCodec}：视频编码，{audioCodec}：音频编码及声道，{tmdbid}：TMDB的ID，{season}：季数，{episode}：集数，{season_episode}：剧集SxxExx，{part}：part1/disc1/dvd1等
   tv_name_format: '{title} ({year})/Season {season}/{title}-{part} - {season_episode} - 第{episode}集'
   # 【刮削元数据及图片】：开启后文件转移完成时会自动生成nfo描述文件及poster海报，协助媒体服务器识别和搜刮
-  nfo_poster: false
+  nfo_poster: true
   # 【实时刷新媒体库】：开启后文件转移完成时会实时刷新媒体服务器（Emby/Jellyfin/Plex）的媒体库
-  refresh_mediaserver: true
+  refresh_mediaserver: false
 
 # 配置Emby服务器信息
 emby:
