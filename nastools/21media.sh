@@ -242,22 +242,6 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
  echo "3.不安装qbittorrent"
  read -r -p "请输入【默认为1】: " qbittorrentinstall
  case $qbittorrentinstall in
- [^(23)])
-   mkdir /home/qbit
-   docker run -d \
-  --name=qbittorrent \
-  -e PUID=0 \
-  -e PGID=0 \
-  -e TZ=/Asia/Shanghai \
-  -e WEBUI_PORT=8080 \
-  -p 8080:8080 \
-  -p 6881:6881 \
-  -p 6881:6881/udp \
-  -v /home/qbit/config:/config \
-  -v /home/nastools/media:/home/nastools/media \
-  --restart unless-stopped \
-  lscr.io/linuxserver/qbittorrent:latest
-  ;;
  2)
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
@@ -288,6 +272,22 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
  3)
    echo "不安装qbittorrent"
    ;;
+ *)
+   mkdir /home/qbit
+   docker run -d \
+  --name=qbittorrent \
+  -e PUID=0 \
+  -e PGID=0 \
+  -e TZ=/Asia/Shanghai \
+  -e WEBUI_PORT=8080 \
+  -p 8080:8080 \
+  -p 6881:6881 \
+  -p 6881:6881/udp \
+  -v /home/qbit/config:/config \
+  -v /home/nastools/media:/home/nastools/media \
+  --restart unless-stopped \
+  lscr.io/linuxserver/qbittorrent:latest
+  ;;
 esac
 
 #开启bbr
