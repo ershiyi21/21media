@@ -114,7 +114,10 @@ esac
 #安装种子索引器jacketta
 read -r -p "nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？\(y/n，默认不安装\): " jackettinstall
 case $jackettinstall in
-  [yY]) 
+  [Nn])
+     echo "不安装jackett"
+     ;;
+  *) 
      mkdir -p /home/jackett1/config
      mkdir -p /home/jackett1/downloads
      echo "开始安装jackett..."
@@ -131,9 +134,6 @@ case $jackettinstall in
      --restart unless-stopped \
      ghcr.io/linuxserver/jackett
      echo "jackett安装完成"
-     ;;
-  *)
-     echo "不安装jackett"
      ;;
 esac
 
