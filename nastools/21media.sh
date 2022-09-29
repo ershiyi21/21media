@@ -82,7 +82,7 @@ docker run -d  \
     jxxghp/nas-tools
 
 #安装字幕下载器chinesesubfinder	
-read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ \(y/n，默认安装\): " cnsubinstall
+read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ (y/n，默认安装): " cnsubinstall
 case $cnsubinstall in
   [yY])   
     mkdir -p /home/cnsub/config
@@ -112,7 +112,7 @@ case $cnsubinstall in
 esac
 
 #安装种子索引器jacketta
-read -r -p "nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？\(y/n，默认不安装\): " jackettinstall
+read -r -p "nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？(y/n，默认不安装): " jackettinstall
 case $jackettinstall in
   [Nn])
      echo "不安装jackett"
@@ -325,7 +325,7 @@ docker rmi jxxghp/nas-tools allanpk716/chinesesubfinder ghcr.io/linuxserver/jack
 rm -rf /home/cnsub /home/jackett /home/log /home/shh /root/21media.sh
 systemctl stop qbit
 systemctl disable qbit
-read -r -p "是否卸载rclone？\(y/n,默认卸载\): " rcloneuninstall
+read -r -p "是否卸载rclone？(y/n,默认卸载): " rcloneuninstall
 case $rcloneunstall in 
   [Nn])
       echo "不卸载rclone"      
@@ -334,7 +334,7 @@ case $rcloneunstall in
       rm -rf /root/.config/rclone/rclone.conf /usr/bin/rclone /usr/local/share/man/man1/rclone.1 /etc/systemd/system/rclone.service
       ;;
   esac
-read -r -p "是否卸载qbittorrent以及下载内容？\(y/n,默认卸载\): " qbituninstall
+read -r -p "是否卸载qbittorrent以及下载内容？(y/n,默认卸载): " qbituninstall
 case $qbituninstall in 
   [Nn])
       echo "不卸载qbittorrent"
