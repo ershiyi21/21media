@@ -383,15 +383,15 @@ if [[ -f "/root/21media.sh" ]] ; then
 				ln -s /home/shh/21media.sh /usr/bin/21media
 				chmod +x /usr/bin/21media
 				echo "快捷方式创建成功，可执行[21media]重新打开脚本"
+                        fi
 			        rm -rf "/root/21media.sh"
-                        fi		
 		elif [[ -d "/usr/sbin" ]]; then
 			if [[ ! -f "/usr/sbin/21media" ]]; then
 				ln -s /home/shh/21media.sh /usr/sbin/21media
 				chmod +x /usr/sbin/21media
 				echo "快捷方式创建成功，可执行[21media]重新打开脚本"
-			        rm -rf "/root/21media.sh"
                         fi
+			        rm -rf "/root/21media.sh"
 		fi
 	fi
     }
