@@ -323,7 +323,7 @@ uninstall() {
 docker stop nas-tools jackett cnsub
 docker rm nas-tools jackett cnsub
 docker rmi jxxghp/nas-tools allanpk716/chinesesubfinder ghcr.io/linuxserver/jackett
-rm -rf /home/cnsub /home/jackett /home/log /home/shh /root/21media.sh
+rm -rf /home/cnsub /home/jackett /home/log /home/shh /root/21media.sh /usr/bin/21media /usr/sbin/21media
 systemctl stop qbit
 systemctl disable qbit
 read -r -p "是否卸载rclone？(y/n,默认卸载): " rcloneuninstall
@@ -367,9 +367,9 @@ cat /home/nastools/config/logs/run.txt
 }
 
 21update() {
-[[ -f /root/21media.sh ]] && rm /root/21media.sh
-wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
-cat /root/21media.sh | sudo tee /home/shh/21media.sh
+[[ -f /home/shh/21media.sh ]] && rm -rf /home/shh/21media.sh
+wget -P /home/shh https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
+sudo chmod +x /home/shh/21media.sh
 echo "更新完毕,即将退出脚本.可执行[21media]重新打开脚本."
 exit
 }
