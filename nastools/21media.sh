@@ -245,7 +245,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
  2)
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
-   echo "开始安装qbittorrent"
+   echo "开始安装宿主机版qbittorrent"
    wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.7/x86_64-qbittorrent-nox &&
    chmod 700 "/usr/local/bin/x86_64-qbittorrent-nox" &&
    echo "[Unit]" > /etc/systemd/system/qbit.service &&
@@ -273,6 +273,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    echo "不安装qbittorrent"
    ;;
  *)
+   echo "开始安装docker版qbittorrent"
    mkdir /home/qbit
    docker run -d \
   --name=qbittorrent \
@@ -366,13 +367,34 @@ cat /home/nastools/config/logs/run.txt
 }
 
 21update() {
-rm /root/21media.sh
+[[ -f /root/21media.sh ]] && rm /root/21media.sh
 wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
-chmod +x 21media.sh
-echo "更新完毕，即将退出脚本.打开脚本请手动运行：
-bash /root/21media.sh"
+21shortcut
+echo "更新完毕,即将退出脚本.可执行[21media]重新打开脚本."
 exit
 }
+
+21shortcut() {
+[[ ! -d "/home/shh" ]] && mkdir -p /home/shh
+if [[ -f "/root/21media.sh" ]] ; then
+		mv "/root/21media.sh" /home/shh/21media.sh
+		if [[ -d "/usr/bin/" ]]; then
+			if [[ ! -f "/usr/bin/21media" ]]; then
+				ln -s /home/shh/21media.sh /usr/bin/21media
+				chmod 700 /usr/bin/21media
+				echo "快捷方式创建成功，可执行[21media]重新打开脚本"
+			    rm -rf "/root/21media.sh"
+            fi		
+		elif [[ -d "/usr/sbin" ]]; then
+			if [[ ! -f "/usr/sbin/21media" ]]; then
+				ln -s /home/shh/21media.sh /usr/sbin/21media
+				chmod 700 /usr/sbin/21media
+				echo "快捷方式创建成功，可执行[21media]重新打开脚本"
+			    rm -rf "$HOME/install.sh"
+            fi
+		fi
+	fi
+    }
 
 menu() {
 echo "作者:ershiyi21"
@@ -387,6 +409,7 @@ echo "4.nas-tools程序日志"
 echo "5.nasup.sh脚本日志"
 echo "6.rclone程序日志"
 echo "====================================="
+21shortcut
 read -r -p "请选择:" selectnum
 case $selectnum in
 1) 
@@ -406,6 +429,9 @@ case $selectnum in
   ;;
 6)
   21rclonelog
+  ;;
+*)
+  menu
   ;;
 esac
 }
