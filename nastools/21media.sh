@@ -323,12 +323,6 @@ esac
 }
 
 uninstall() {
-mkdir /home/21backup
-cp /home/nastools/config/config.yaml /home/21backup
-cp /home/nastools/config/default-category.yaml /home/21backup
-echo "nas-tools配置文件已备份到 /home/21backup"
-cp /home/shh/rclone.conf /home/21backup
-echo "rclone配置文件已备份到 /home/shh" 
 docker stop nas-tools jackett cnsub
 docker rm nas-tools jackett cnsub
 docker rmi jxxghp/nas-tools allanpk716/chinesesubfinder ghcr.io/linuxserver/jackett
