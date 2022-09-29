@@ -66,7 +66,7 @@ mkdir -p /home/nastools/media/storage/其它
 read -r -p "请输入tmdb api key: " tmdb_apikey
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/config.yaml
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/default-category.yaml
-sed -i "33a /t/trmt_tmdbkey: ${tmdb_apikey}" /home/nastools/config/config.yaml
+sed -i "33a '  rmt_tmdbkey: ${tmdb_apikey}'" /home/nastools/config/config.yaml
 #nas-tools运行docker容器
 docker run -d  \
     --restart=always \
