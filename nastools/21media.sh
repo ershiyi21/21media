@@ -328,18 +328,20 @@ systemctl disable qbit
 read -r -p "是否卸载rclone？(y/n,默认卸载): " rcloneuninstall
 case $rcloneunstall in 
   [Nn])
-      echo "不卸载rclone"      
+      echo "\n不卸载rclone"      
       ;;
     *)
+      echo "\n卸载rclone"
       rm -rf /root/.config/rclone/rclone.conf /usr/bin/rclone /usr/local/share/man/man1/rclone.1 /etc/systemd/system/rclone.service
       ;;
   esac
 read -r -p "是否卸载qbittorrent以及下载内容？(y/n,默认卸载): " qbituninstall
 case $qbituninstall in 
   [Nn])
-      echo "不卸载qbittorrent"
+      echo "\n不卸载qbittorrent"
       ;;
     *)
+      echo "\n卸载qbittorrent"
       rm -rf /usr/local/bin/x86_64-qbittorrent-nox /usr/local/etc/qBittorrent
       docker stop qbittorrent && docker rm qbittorrent && docker rmi lscr.io/linuxserver/qbittorrent
       rm -rf /home/nastools /root/qbit
