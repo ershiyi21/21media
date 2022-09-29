@@ -71,8 +71,10 @@ mkdir -p /home/nastools/media/storage/动漫/国内
 mkdir -p /home/nastools/media/storage/动漫/国外
 mkdir -p /home/nastools/media/storage/其它
 #下载nas-tools配置文件
+read -r -p "请输入tmdb api key: " tmdb_apikey
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/config.yaml
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/default-category.yaml
+sed -i "33a rmt_tmdbkey: ${tmdb_apikey}" /home/nastools/config/config.yaml
 #nas-tools运行docker容器
 docker run -d  \
     --restart=always \
@@ -371,9 +373,10 @@ cat /home/log/rclone.log
 cat /home/nastools/config/logs/run.txt
 }
 
-update() {
+21update() {
 rm /root/21media.sh
 wget -P /root https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
+chmod +x 21media.sh
 echo "更新完毕，即将退出脚本.打开脚本请手动运行：
 bash /root/21media.sh"
 exit
@@ -398,7 +401,7 @@ case $selectnum in
   21install
   ;;
 2)
-  update
+  21update
   ;;
 3) 
   21uninstall
