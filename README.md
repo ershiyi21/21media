@@ -4,11 +4,17 @@
 - 仅适用于debian&ubuntu系统.
 - nas-tools硬链接文件到其它目录，rclone实时借助api上传云端，做种&上传两不误
 - rclone上传线程可控，同时运行进程数数唯一，不会出现单文件多传或rclone重复运行导致服务器过载死机
-- 
+
 ## 一键安装脚本：
 ```
 cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
 ```
+
+tmdb_apikey申请。注册tmdb账号，申请地址：
+```
+https://www.themoviedb.org/settings/api
+```
+
 ## 安装后打开脚本启动界面
 ```
 bash /root/21media.sh
@@ -26,15 +32,11 @@ http://ip:8080
 ```
 http://ip:47555
 ```
-4、注册tmdb账号，申请tmdb_apikey，并且在nas-tools中完成配置
-```
-https://www.themoviedb.org/settings/api
-```
-5、配置nas-tools,默认登陆,用户名: admin 密码: password .基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.登录地址：
+4、配置nas-tools,默认登陆,用户名: admin 密码: password .基础设置,配置移动方式为硬链接或者移动.索引器为内置或者jackeet,下载器qbittorrent.登录地址：
 ```
 http://ip:3000
 ```
-6、初始化字幕chinesesubfinder下载工具，打开实验室功能，生成api_key保存，开启进程守护" 登录地址：
+5、初始化字幕chinesesubfinder下载工具，打开实验室功能，生成api_key保存，开启进程守护" 登录地址：
 ```
 http://ip:19035
 ```
