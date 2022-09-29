@@ -10,7 +10,7 @@
 cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
 ```
 
- 注：tmdb_apikey申请。注册tmdb账号，申请地址：https://www.themoviedb.org/settings/api
+ 注：tmdb_api申请地址：https://www.themoviedb.org/settings/api
 
 ## 安装后打开脚本启动界面
 ```
