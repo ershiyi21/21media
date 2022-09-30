@@ -417,8 +417,8 @@ if [[ -f "/root/21media.sh" ]] ; then
 menu() {
 echo -e "${green}作者:ershiyi21${plain}"
 echo -e "${green}Github:https://github.com/ershiyi21/media21${plain}"
-echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}"
-echo -e "${green}==============脚本管理================${plain}"
+echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}\n"
+echo -e "${green}--------------脚本管理----------------${plain}"
 echo -e "${green}1.${plain}进行安装"
 echo -e "${green}2.${plain}升级脚本"
 echo -e "${green}3.${plain}卸载脚本"
@@ -426,7 +426,7 @@ echo -e "${green}--------------日志查询----------------${plain}"
 echo -e "${green}4.${plain}nas-tools程序日志"
 echo -e "${green}5.${plain}nasup.sh脚本日志"
 echo -e "${green}6.${plain}rclone程序日志"
-echo -e "${green}======================================${plain}"
+echo -e "${green}-------------------------------------${plain}"
 21shortcut
 read -r -p "${green}请选择: ${plain}" selectnum
 case $selectnum in
