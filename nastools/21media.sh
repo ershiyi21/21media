@@ -4,11 +4,14 @@
 
 read -r -p "${green}是否开始安装？（y/n,默认安装）： ${plain}" startinstall
 case $startinstall in
-  Nn)
+  [Nn])
     echo "${yello}退出安装${plain}"
     menu
+    ;;
   *)
-    echo "${green}开始安装...${plain}"
+    echo "${green}开始安装${plain}"
+    ;;
+   
 esac
 
 #设置北京时区
