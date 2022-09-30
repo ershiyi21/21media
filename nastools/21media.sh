@@ -1,9 +1,6 @@
 #!/bin/bash
 
 21install() {
-# check root
-[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
-
 #设置北京时区
 sudo apt install ntp -y
 sudo apt install ntpdate -y
@@ -12,28 +9,28 @@ ln -s /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 ntpdate us.pool.ntp.org
 
 #安装docker
-echo "检查Docker是否已安装……"
+echo "${green}检查Docker是否已安装……${plain}"
 docker -v
 if [ $? -eq  0 ]; then
-echo "检测到docker已安装，跳过"
+echo "${green}检测到docker已安装，跳过${plain}"
 else
-echo "检测到docker未安装，开始安装"
+echo "${green}检测到docker未安装，开始安装${plain}"
 wget -qO- get.docker.com | bash
-echo "docker安装完成"
+echo "${green}docker安装完成${plain}"
 fi
 
 #安装rclone
-echo "检查rclone是否已安装..."
+echo "${green}检查rclone是否已安装...${plain}"
 rclone --version
 if [ $? -eq  0 ]; then
-echo "检测到rclone已安装，跳过"
+echo "${green}检测到rclone已安装，跳过${plain}"
 else
-echo "检测到rclone未安装，开始安装..."
+echo "${green}检测到rclone未安装，开始安装...${plain}"
 curl https://rclone.org/install.sh | bash
 fi
 
 #安装rclone挂载fuse
-echo "安装fuse"
+echo "${green}安装fuse${plain}"
 apt-get install fuse
 
 #创建目录
@@ -41,7 +38,7 @@ mkdir /home/shh
 mkdir /home/log
 
 #安装nas-tools
-echo "开始安装nas-tools"
+echo "${green}开始安装nas-tools${plain}"
 #创建目录
 mkdir -p /home/nastools/config
 mkdir -p /home/nastools/media/downloads/电影
@@ -63,7 +60,7 @@ mkdir -p /home/nastools/media/storage/动漫/国内
 mkdir -p /home/nastools/media/storage/动漫/国外
 mkdir -p /home/nastools/media/storage/其它
 #下载nas-tools配置文件
-read -r -p "请输入tmdb api key: " tmdb_apikey
+read -r -p "${green}请输入tmdb api key: ${plain}" tmdb_apikey
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/config.yaml
 wget -P /home/nastools/config https://raw.githubusercontent.com/ershiyi21/mediascript/main/nastools/default-category.yaml
 sed -i "33a \  rmt_tmdbkey: ${tmdb_apikey}" /home/nastools/config/config.yaml
@@ -82,15 +79,15 @@ docker run -d  \
     jxxghp/nas-tools
 
 #安装字幕下载器chinesesubfinder	
-read -r -p "nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ (y/n，默认安装): " cnsubinstall
+read -r -p "${green}nas-tools没有内置字幕下载功能，需借助第三方软件，是否安装字幕下载器chinesesubfinder？ (y/n，默认安装): ${plain}" cnsubinstall
 case $cnsubinstall in
   [Nn])
-    echo "不安装字幕下载器chinesesubfinder"
+    echo "${yello}不安装字幕下载器chinesesubfinder${plain}"
     ;;
   *)   
     mkdir -p /home/cnsub/config
     mkdir -p /home/cnsub/browser
-    echo "开始安装字幕下载器chinesesubfinder"
+    echo "${green}开始安装字幕下载器chinesesubfinder${plain}"
     docker run -d \
     --restart=always \
     -v /home/cnsub/config:/config   `# 冒号左边请修改为你想在主机上保存配置、日志等文件的路径` \
@@ -107,17 +104,17 @@ case $cnsubinstall in
     --log-driver "json-file" \
     --log-opt "max-size=100m" `# 限制docker控制台日志大小，可自行调整` \
     allanpk716/chinesesubfinder	
-    echo "字幕下载器chinesesubfinder已安装完成"
+    echo "${green}字幕下载器chinesesubfinder已安装完成${plain}"
     ;;
 esac
 
 #安装种子索引器jacketta
-read -r -p "nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？(y/n，默认不安装): " jackettinstall
+read -r -p "${green}nas-tools已经内置种子索引器，是否额外安装种子索引器jackett？(y/n，默认不安装): ${plain}" jackettinstall
 case $jackettinstall in
   [Yy]) 
      mkdir -p /home/jackett1/config
      mkdir -p /home/jackett1/downloads
-     echo "开始安装jackett..."
+     echo "${green}开始安装jackett...${plain}"
      docker run -d \
      --restart=always \
      --name=jackett \
@@ -130,10 +127,10 @@ case $jackettinstall in
      -v /home/jackett1/downloads:/downloads \
      --restart unless-stopped \
      ghcr.io/linuxserver/jackett
-     echo "jackett安装完成"
+     echo "${green}jackett安装完成${plain}"
      ;;
    *)
-     echo "不安装jackett"
+     echo "${green}不安装jackett${plain}"
      ;;
 esac
 
@@ -142,7 +139,7 @@ apt install inotify-tools -y
 
 #生成rclone自动上传脚本nasup.sh
 touch /home/shh/rclone.conf
-echo "生成脚本nasup.sh"
+echo "${green}生成脚本nasup.sh${plain}"
 read -r -p "rclone远端地址[格式,盘符:路径]: " remote_dir
 read -r -p "rclone上传线程数[默认为4]: " rclone_num
 if [ -z $rclone_num ]; then
@@ -204,7 +201,7 @@ done' >> /home/shh/nasup.sh
 #赋予脚本执行权限
 chmod +x /home/shh/nasup.sh
 #设置nas.sh脚本开机启动
-echo "设置nas.sh脚本开机启动"
+echo "${green}设置nas.sh脚本开机启动${plain}"
 crontab -l > crontab_test
 echo "@reboot bash /home/shh/nasup.sh
 0 0 * * * rm -rf /home/log" >> crontab_test
@@ -220,7 +217,7 @@ if [ $? -eq  0 ]; then
    fi
 fi
 
-echo "生成emby自动扫库脚本"
+echo "${green}生成emby自动扫库脚本${plain}"
 read -r -p "emby地址[格式http://1.1.1.1:8896,https://emby.com:8896]: " emby_url
 read -r -p "emby_apikey: " api_key
 echo "import requests
@@ -238,15 +235,15 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
 " > /home/shh/libraryrefresh.py
 
 #安装qbittorrent
- echo "1.安装docker版qbittorrent【默认情况】"
- echo "2.安装宿主机版qbittorrent【仅适用于debian&ubuntu x86系统，不支持ARM，而且可能存在奇怪问题】"
- echo "3.不安装qbittorrent"
- read -r -p "请输入【默认为1】: " qbittorrentinstall
+ echo "${green}1.安装docker版qbittorrent【默认情况】${plain}"
+ echo "${green}2.安装宿主机版qbittorrent【仅适用于debian&ubuntu x86系统，不支持ARM，而且可能存在奇怪问题】${plain}"
+ echo "${green}3.不安装qbittorrent${plain}"
+ read -r -p "${green}请输入【默认为1】: ${plain}" qbittorrentinstall
  case $qbittorrentinstall in
  2)
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
-   echo "开始安装宿主机版qbittorrent"
+   echo "${green}开始安装宿主机版qbittorrent${plain}"
    wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.4.5_v2.0.7/x86_64-qbittorrent-nox &&
    chmod 700 "/usr/local/bin/x86_64-qbittorrent-nox" &&
    echo "[Unit]" > /etc/systemd/system/qbit.service &&
@@ -260,21 +257,21 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    systemctl enable qbit &&
    systemctl start qbit
    systemctl status qbit 
-   echo "qbittorrent脚本安装完毕
+   echo "${green}qbittorrent脚本安装完毕
    qbittorrent运行: systemctl start qbit
    qbittorrent停止: systemctl stop qbit
    qbittorrent重启: systemctl restart qbit"
    echo "qbittorrent用户名：admin"
-   echo "qbittorrent密码：adminadmin"
+   echo "qbittorrent密码：adminadmin${plain}"
    else
-   echo "检测到qbittorrent已安装，跳过"
+   echo "${yello}检测到qbittorrent已安装，跳过${plain}"
    fi
    ;;
  3)
-   echo "不安装qbittorrent"
+   echo "${yello}不安装qbittorrent${plain}"
    ;;
  *)
-   echo "开始安装docker版qbittorrent"
+   echo "${green}开始安装docker版qbittorrent${plain}"
    mkdir /home/qbit
    docker run -d \
   --name=qbittorrent \
@@ -295,21 +292,20 @@ esac
 #开启bbr
 lsmod | grep bbr 
 if [ $? -eq 1 ]; then
- echo "开始开启原版bbr"
+ echo "${green}开始开启原版bbr${plain}"
  echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
  echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
  sysctl -p
- lsmod | grep bbr 
- echo "若输出【tcp_bbr 20480  1】即表示成功开启bbr"
+ lsmod | grep bbr
 fi
 #重启
-echo "安装完成，5秒后重启系统！！！"
+echo "${green}安装完成，5秒后重启系统！！！${plain}"
 sleep 5s
 reboot
 }
 
 21uninstall() {
-read -r -p "是否确定卸载脚本以及安装内容？(y/n,默认为否)" sureuninstall
+read -r -p "${green}是否确定卸载脚本以及安装内容？(y/n,默认为否)${plain}" sureuninstall
 case $sureuninstall in
   [Yy])
      uninstall
@@ -327,23 +323,23 @@ docker rmi jxxghp/nas-tools allanpk716/chinesesubfinder ghcr.io/linuxserver/jack
 rm -rf /home/cnsub /home/jackett /home/log /home/shh /root/21media.sh /usr/bin/21media /usr/sbin/21media
 systemctl stop qbit
 systemctl disable qbit
-read -r -p "是否卸载rclone？(y/n,默认卸载): " rcloneuninstall
+read -r -p "${green}是否卸载rclone？(y/n,默认卸载): ${plain}" rcloneuninstall
 case $rcloneunstall in 
   [Nn])
-      echo "不卸载rclone"      
+      echo "${green}不卸载rclone${plain}"      
       ;;
     *)
-      echo "卸载rclone"
+      echo "${green}卸载rclone${plain}"
       rm -rf /root/.config/rclone/rclone.conf /usr/bin/rclone /usr/local/share/man/man1/rclone.1 /etc/systemd/system/rclone.service
       ;;
   esac
-read -r -p "是否卸载qbittorrent以及下载内容？(y/n,默认卸载): " qbituninstall
+read -r -p "${green}是否卸载qbittorrent以及下载内容？(y/n,默认卸载): ${plain}" qbituninstall
 case $qbituninstall in 
   [Nn])
-      echo "不卸载qbittorrent"
+      echo "${green}不卸载qbittorrent${plain}"
       ;;
     *)
-      echo "卸载qbittorrent"
+      echo "${green}卸载qbittorrent${plain}"
       rm -rf /usr/local/bin/x86_64-qbittorrent-nox /usr/local/etc/qBittorrent
       docker stop qbittorrent && docker rm qbittorrent && docker rmi lscr.io/linuxserver/qbittorrent
       rm -rf /home/nastools /root/qbit
@@ -352,7 +348,7 @@ esac
 crontab -l > crontab_test
 echo  > crontab_test
 crontab crontab_test
-echo "脚本卸载完毕，有缘江湖再见"
+echo "${green}脚本卸载完毕，有缘江湖再见${plain}"
 }
 
 21nasuplog() {
@@ -371,7 +367,7 @@ cat /home/nastools/config/logs/run.txt
 [[ -f /home/shh/21media.sh ]] && rm -rf /home/shh/21media.sh
 wget -P /home/shh https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
 sudo chmod +x /home/shh/21media.sh
-echo "更新完毕,即将退出脚本.可执行[21media]重新打开脚本."
+echo "${green}更新完毕,即将退出脚本.可执行[21media]重新打开脚本.${plain}"
 exit
 }
 
@@ -383,14 +379,14 @@ if [[ -f "/root/21media.sh" ]] ; then
 			if [[ ! -f "/usr/bin/21media" ]]; then
 				ln -s /home/shh/21media.sh /usr/bin/21media
 				chmod +x /usr/bin/21media
-				echo "快捷方式创建成功，可执行[21media]重新打开脚本"
+				echo "${green}快捷方式创建成功，可执行[21media]重新打开脚本${plain}"
                         fi
 			        rm -rf "/root/21media.sh"
 		elif [[ -d "/usr/sbin" ]]; then
 			if [[ ! -f "/usr/sbin/21media" ]]; then
 				ln -s /home/shh/21media.sh /usr/sbin/21media
 				chmod +x /usr/sbin/21media
-				echo "快捷方式创建成功，可执行[21media]重新打开脚本"
+				echo "${green}快捷方式创建成功，可执行[21media]重新打开脚本${plain}"
                         fi
 			        rm -rf "/root/21media.sh"
 		fi
@@ -398,20 +394,20 @@ if [[ -f "/root/21media.sh" ]] ; then
     }
 
 menu() {
-echo "作者:ershiyi21"
-echo "Github:https://github.com/ershiyi21/media21"
-echo "描述:在线媒体下载&管理一键安装脚本"
-echo "==============脚本管理================"
-echo "1.进行安装"
-echo "2.升级脚本"
-echo "3.卸载脚本"
-echo "--------------日志查询----------------"
-echo "4.nas-tools程序日志"
-echo "5.nasup.sh脚本日志"
-echo "6.rclone程序日志"
-echo "====================================="
+echo "${green}作者:ershiyi21${plain}"
+echo "${green}Github:https://github.com/ershiyi21/media21${plain}"
+echo "${green}描述:在线媒体下载&管理一键安装脚本${plain}"
+echo "${green}==============脚本管理================${plain}"
+echo "${green}1.进行安装${plain}"
+echo "${green}2.升级脚本${plain}"
+echo "${green}3.卸载脚本${plain}"
+echo "${green}--------------日志查询----------------${plain}"
+echo "${green}4.nas-tools程序日志${plain}"
+echo "${green}5.nasup.sh脚本日志${plain}"
+echo "${green}6.rclone程序日志${plain}"
+echo "${green}======================================${plain}"
 21shortcut
-read -r -p "请选择:" selectnum
+read -r -p "${green}请选择: ${plain}" selectnum
 case $selectnum in
 1) 
   21install
@@ -437,8 +433,15 @@ case $selectnum in
 esac
 }
 
-
 menu
+
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+plain='\033[0m'
+
+# check root
+[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
 
 #https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
