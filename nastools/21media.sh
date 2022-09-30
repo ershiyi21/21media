@@ -2,7 +2,7 @@
 
 21install() {
 
-read -r -p "${green}是否开始安装？（y/n,默认安装）： ${plain}" startinstall
+read -r -p -e "${green}是否开始安装？（y/n,默认安装）： ${plain}" startinstall
 case $startinstall in
   [Nn])
     echo "${yello}退出安装${plain}"
@@ -407,20 +407,20 @@ if [[ -f "/root/21media.sh" ]] ; then
     }
 
 menu() {
-echo "${green}作者:ershiyi21${plain}"
-echo "${green}Github:https://github.com/ershiyi21/media21${plain}"
-echo "${green}描述:在线媒体下载&管理一键安装脚本${plain}"
-echo "${green}==============脚本管理================${plain}"
-echo "${green}1.进行安装${plain}"
-echo "${green}2.升级脚本${plain}"
-echo "${green}3.卸载脚本${plain}"
-echo "${green}--------------日志查询----------------${plain}"
-echo "${green}4.nas-tools程序日志${plain}"
-echo "${green}5.nasup.sh脚本日志${plain}"
-echo "${green}6.rclone程序日志${plain}"
-echo "${green}======================================${plain}"
+echo -e "${green}作者:ershiyi21${plain}"
+echo -e "${green}Github:https://github.com/ershiyi21/media21${plain}"
+echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}"
+echo -e "${green}==============脚本管理================${plain}"
+echo -e "${green}1.进行安装${plain}"
+echo -e "${green}2.升级脚本${plain}"
+echo -e "${green}3.卸载脚本${plain}"
+echo -e "${green}--------------日志查询----------------${plain}"
+echo -e "${green}4.nas-tools程序日志${plain}"
+echo -e "${green}5.nasup.sh脚本日志${plain}"
+echo -e "${green}6.rclone程序日志${plain}"
+echo -e "${green}======================================${plain}"
 21shortcut
-read -r -p "${green}请选择: ${plain}" selectnum
+read -r -p -e "${green}请选择: ${plain}" selectnum
 case $selectnum in
 1) 
   21install
