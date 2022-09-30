@@ -409,11 +409,11 @@ if [[ -f "/root/21media.sh" ]] ; then
 menu() {
 echo -e "${green}作者:ershiyi21${plain}"
 echo -e "${green}Github:https://github.com/ershiyi21/media21${plain}"
-echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}"
+echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}\n"
 echo -e "${green}==============脚本管理================${plain}"
 echo -e "${green}1.进行安装${plain}"
 echo -e "${green}2.升级脚本${plain}"
-echo -e "${green}3.卸载脚本${plain}"
+echo -e "${green}3.卸载脚本${plain}\n"
 echo -e "${green}--------------日志查询----------------${plain}"
 echo -e "${green}4.nas-tools程序日志${plain}"
 echo -e "${green}5.nasup.sh脚本日志${plain}"
