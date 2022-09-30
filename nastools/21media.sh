@@ -1,5 +1,13 @@
 #!/bin/bash
 
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+plain='\033[0m'
+
+# check root
+[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
+
 21install() {
 
 read -r -p "${green}是否开始安装？（y/n,默认安装）： ${plain}" startinstall
@@ -409,15 +417,15 @@ if [[ -f "/root/21media.sh" ]] ; then
 menu() {
 echo -e "${green}作者:ershiyi21${plain}"
 echo -e "${green}Github:https://github.com/ershiyi21/media21${plain}"
-echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}\n"
+echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}"
 echo -e "${green}==============脚本管理================${plain}"
-echo -e "${green}1.进行安装${plain}"
-echo -e "${green}2.升级脚本${plain}"
-echo -e "${green}3.卸载脚本${plain}\n"
+echo -e "${green}1.${plain}进行安装"
+echo -e "${green}2.${plain}升级脚本"
+echo -e "${green}3.${plain}卸载脚本"
 echo -e "${green}--------------日志查询----------------${plain}"
-echo -e "${green}4.nas-tools程序日志${plain}"
-echo -e "${green}5.nasup.sh脚本日志${plain}"
-echo -e "${green}6.rclone程序日志${plain}"
+echo -e "${green}4.${plain}nas-tools程序日志"
+echo -e "${green}5.${plain}nasup.sh脚本日志"
+echo -e "${green}6.${plain}rclone程序日志"
 echo -e "${green}======================================${plain}"
 21shortcut
 read -r -p "${green}请选择: ${plain}" selectnum
@@ -447,14 +455,6 @@ esac
 }
 
 menu
-
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-plain='\033[0m'
-
-# check root
-[[ $EUID -ne 0 ]] && echo -e "${red}错误：${plain} 必须使用root用户运行此脚本！\n" && exit 1
 
 #https://github.com/ershiyi21/media21.原创个人自用脚本.目前仅适用于debian&ubuntu系统.
 #一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.配置好nas-tools媒体库等设置.
