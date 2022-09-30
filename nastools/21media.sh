@@ -167,11 +167,11 @@ case $jackettinstall in
      -v /home/jackett1/downloads:/downloads \
      --restart unless-stopped \
      ghcr.io/linuxserver/jackett
-     echo "${green}jackett安装完成${plain}"
-     ;;
+     echo -e "${green}jackett安装完成${plain}"
      sleep 2
      docker restart jackett
      [[ $? == 0 ]] && echo -e "${green}jackett安装成功！${plain}" || echo -e "${green}jackett安装失败！${plain}"
+     ;;
    *)
      echo "${green}不安装jackett${plain}"
      ;;
