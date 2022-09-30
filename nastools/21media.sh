@@ -420,7 +420,7 @@ echo -e "${green}5.nasup.sh脚本日志${plain}"
 echo -e "${green}6.rclone程序日志${plain}"
 echo -e "${green}======================================${plain}"
 21shortcut
-read -r -p -e "${green}请选择: ${plain}" selectnum
+read -r -p "${green}请选择: ${plain}" selectnum
 case $selectnum in
 1) 
   21install
