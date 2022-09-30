@@ -2,7 +2,7 @@
 
 21install() {
 
-read -r -p -e "${green}是否开始安装？（y/n,默认安装）： ${plain}" startinstall
+read -r -p "${green}是否开始安装？（y/n,默认安装）： ${plain}" startinstall
 case $startinstall in
   [Nn])
     echo "${yello}退出安装${plain}"
