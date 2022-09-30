@@ -366,7 +366,7 @@ reboot
 }
 
 21uninstall() {
-echo -e -n "${green}是否确定卸载脚本以及安装内容？(y/n,默认为否)${plain}"
+echo -e -n "\n${green}是否确定卸载脚本以及安装内容？(y/n,默认为否)：${plain}"
 read sureuninstall
 case $sureuninstall in
   [Yy])
