@@ -141,6 +141,7 @@ esac
 apt install inotify-tools -y
 
 #生成rclone自动上传脚本nasup.sh
+touch /home/shh/rclone.conf
 echo "生成脚本nasup.sh"
 read -r -p "rclone远端地址[格式,盘符:路径]: " remote_dir
 read -r -p "rclone上传线程数[默认为4]: " rclone_num
