@@ -462,7 +462,8 @@ exit 1
 }
 
 menu() {
-echo -e "\n${green}作者:ershiyi21${plain}"
+echo
+echo -e "${green}作者:ershiyi21${plain}"
 echo -e "${green}Github:https://github.com/ershiyi21/media21${plain}"
 echo -e "${green}描述:在线媒体下载&管理一键安装脚本${plain}\n"
 echo -e "${green}--------------脚本管理----------------${plain}"
