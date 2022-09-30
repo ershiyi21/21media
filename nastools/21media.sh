@@ -182,9 +182,9 @@ apt install inotify-tools -y
 
 #生成rclone自动上传脚本nasup.sh
 touch /home/shh/rclone.conf
-echo "${green}生成脚本nasup.sh${plain}"
-read -r -p "rclone远端地址[格式,盘符:路径]: " remote_dir
-read -r -p "rclone上传线程数[默认为4]: " rclone_num
+echo -e "${green}生成脚本nasup.sh${plain}"
+echo -e "\n${green}rclone远端地址[格式,盘符:路径]: ${plain}" && read remote_dir
+echo -e "\n${green}rclone上传线程数[默认为4]: ${plain}" && read rclone_num
 if [ -z $rclone_num ]; then
 rclone_num=4
 fi
@@ -256,15 +256,13 @@ if [ ${pycount} -eq  0 ]; then
    echo -e "${green}检测无python环境，开始安装python3！${plain}"
    sudo apt install python3 -y
    python3 --version 
-   [[ $? == 0 ]] && echo -e "${green}python3安装完成！${plain}" \
-   || echo -e "${green}python3安装失败！${plain}"
+   [[ $? == 0 ]] && echo -e "${green}python3安装完成！${plain}\n" \
+   || echo -e "${green}python3安装失败！${plain}\n"
 fi
 
-echo -e "${green}生成emby自动扫库脚本${plain}"
-echo -e -n "请输入emby地址[格式http://1.1.1.1:8896,https://emby.com:8896]: "
-read  emby_url
-echo -e -n "请输入emby_apikey: "
-read api_key
+echo -e "${green}生成emby自动扫库脚本${plain}\n"
+echo -e -n "${green}请输入emby地址[格式http://1.1.1.1:8896,https://emby.com:8896]: ${plain}" && read  emby_url
+echo -e -n "\n${green}请输入emby_apikey: ${plain}" && read api_key
 echo "import requests
 
 headers = {
@@ -280,11 +278,10 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
 " > /home/shh/libraryrefresh.py
 
 #安装qbittorrent
- echo -e "${green}1.安装docker版qbittorrent【默认情况】${plain}"
- echo -e "${green}2.安装宿主机版qbittorrent【仅适用于debian&ubuntu x86系统，不支持ARM，而且可能存在奇怪问题】${plain}"
- echo -e "${green}3.不安装qbittorrent${plain}"
- echo -e "${green}请输入【默认为1】: ${plain}"
- read qbittorrentinstall
+ echo -e "${green}1.${plain}安装docker版qbittorrent【默认情况】"
+ echo -e "${green}2.${plain}安装宿主机版qbittorrent【仅适用于debian&ubuntu x86系统，不支持ARM，而且可能存在奇怪问题】"
+ echo -e "${green}3.${plain}不安装qbittorrent"
+ echo -e -n "\n${green}请输入[默认1]： ${plain}" && read qbittorrentinstall
  case $qbittorrentinstall in
  2)
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
@@ -407,7 +404,7 @@ case $qbituninstall in
       echo -e "${green}卸载qbittorrent${plain}"
       rm -rf /usr/local/bin/x86_64-qbittorrent-nox /usr/local/etc/qBittorrent
       docker stop qbittorrent && docker rm qbittorrent && docker rmi lscr.io/linuxserver/qbittorrent
-      rm -rf /home/nastools /root/qbit
+      rm -rf /home/nastools /home/qbit
       ;;
 esac
 crontab -l > crontab_test
