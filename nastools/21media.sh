@@ -258,7 +258,6 @@ if [ ${pycount} -eq  0 ]; then
    python3 --version 
    [[ $? == 0 ]] && echo -e "${green}python3安装完成！${plain}" \
    || echo -e "${green}python3安装失败！${plain}"
-   fi
 fi
 
 echo -e "${green}生成emby自动扫库脚本${plain}"
@@ -336,7 +335,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
   lscr.io/linuxserver/qbittorrent:latest
   sleep 2
   docker restart qbittorrent
-  [[ #? == 0 ]] && echo -e "${green}docker版qbittorrent安装成功！${plain}" \
+  [[ $? == 0 ]] && echo -e "${green}docker版qbittorrent安装成功！${plain}" \
   || echo -e "${green}docker版qbittorrent安装失败！${plain}"
   ;;
 esac
