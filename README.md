@@ -43,7 +43,7 @@ http://ip:19035
  - nasup.sh监控文件夹文件变化，如有文件则开始rclone上传，直到文件夹为空
  - nasup.sh通知emby进行扫库，继续监控文件夹
  
- 注：emby入库tg通知需要自己配置，项目地址 https://github.com/bjoerns1983/Emby.Plugin.TelegramNotification
+   注：emby入库tg通知需要自己配置，项目地址 https://github.com/bjoerns1983/Emby.Plugin.TelegramNotification
 
 ## 媒体分类
 - 电影：动漫、华语、欧美、日韩、未分类
