@@ -37,9 +37,12 @@ http://ip:3000
 http://ip:19035
 ```
 ## 脚本运行逻辑
-nas-tools借助qbittorrent下载pt/bt文件，然后监控qbittorrent下载情况，qbittorrent下载完成后，nas-tools识别媒体并且进行重命名，硬链接到文件夹/home/nastools/storage下，并且发送api请求到字幕下载工具chinesesubfinder，chinesesubfinder借助nfo文件识别剧集tmdb或imdb的id，在各大字幕库进行字幕搜索与下载，下载字幕到文件夹[/home/nastools/storage]下视频所在目录。
-同时，开机自启动的脚本nasup.sh会一直监控文件夹/home/nastools/storage，一旦发现增加文件，2分钟后会自动调用rclone move进行上传，直到文件夹/home/nastools/storage为空，即上传完成，然后自动进行emby扫库请求，emby成功添加新剧集的通知将发送到tg频道或者群组等,然后脚本nasup.sh重新继续监控文件夹/home/nastools/storage。
-
+ - nas-tools借助qbittorrent下载种子
+ - nas-tools识别、重命名、移动（硬链接）下载文件
+ - nas-tools通知chinesesubfinder字幕下载
+ - nasup.sh监控文件夹文件变化，如有文件则开始rclone上传，直到文件夹为空
+ - nasup.sh通知emby进行扫库，继续监控文件夹
+ 
 注：emby入库tg通知需要自己配置，项目地址 https://github.com/bjoerns1983/Emby.Plugin.TelegramNotification
 
 ## 媒体分类
