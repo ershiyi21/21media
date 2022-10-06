@@ -7,7 +7,7 @@
 
 ## 一键安装脚本：
 ```
-cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
+cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/21media/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
 ```
 
  注：tmdb_api申请地址：https://www.themoviedb.org/settings/api
