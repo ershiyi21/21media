@@ -427,7 +427,7 @@ cat /home/nastools/config/logs/run.txt
 
 21update() {
 [[ -f /home/shh/21media.sh ]] && rm -rf /home/shh/21media.sh
-wget -P /home/shh https://raw.githubusercontent.com/ershiyi21/media21/main/nastools/21media.sh
+wget -P /home/shh https://raw.githubusercontent.com/ershiyi21/21media/main/nastools/21media.sh
 sudo chmod +x /home/shh/21media.sh
 echo -e "${green}更新完毕,即将退出脚本.可执行[21media]重新打开脚本.${plain}"
 exit
