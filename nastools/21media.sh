@@ -200,7 +200,7 @@ libraryrefresh_dir=/home/shh/libraryrefresh.py
 
 echo "[$(date "+%Y-%m-%d %H:%M:%S")] 开始运行脚本" >> ${log_dir}
 if [ ! -s "/home/shh/rclone.conf" ] ; then
-echo "rclone配置文件未复制到目录/home/shh/ 退出nasup脚本"
+echo "rclone配置文件未复制到目录/home/shh/ 退出nasup脚本" >> ${log_dir}
 exit
 fi
 while
