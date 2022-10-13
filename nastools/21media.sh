@@ -247,7 +247,7 @@ chmod +x /home/shh/nasup.sh
 echo -e "${green}设置nas.sh脚本开机启动${plain}"
 crontab -l > crontab_test
 echo "@reboot bash /home/shh/nasup.sh
-0 0 * * * rm -rf /home/log" >> crontab_test
+2 0 * * 1 rm -rf /home/log/*" >> crontab_test
 crontab crontab_test
 
 #生成emby自动扫库脚本
