@@ -458,6 +458,16 @@ if [[ -f "/root/21media.sh" ]] ; then
 exit 1
 }
 
+21jobclear() {
+    [[ ! -n $1 ]] && echogreen "请输入任务名：" && read job || job=$1
+	while [[ $(ps -ef | grep ${job} | grep -v grep | wc -l ) != 0 ]]
+	do
+        kill -9 $(ps -ef | grep ${job} | grep -v grep | awk '{print $2}')
+    done
+	nohup bash /home/shh/nasup.sh & >> /dev/null
+	echo -e "${green}nasup.sh已重新启动！${plain}"
+}	
+
 menu() {
 echo
 echo -e "${green}作者:ershiyi21${plain}"
@@ -472,6 +482,8 @@ echo -e "${green}--------------日志查询----------------${plain}"
 echo -e "${green}4.${plain}nas-tools程序日志"
 echo -e "${green}5.${plain}nasup.sh脚本日志"
 echo -e "${green}6.${plain}rclone程序日志"
+echo -e "${green}--------------其它功能----------------${plain}"、
+echo -e "${green}7.${plain}nasup.sh重新启动"
 echo -e "${green}-------------------------------------${plain}"
 21shortcut
 echo -e -n "${green}请选择: ${plain}"
@@ -497,6 +509,9 @@ case $selectnum in
   ;;
 6)
   21rclonelog
+  ;;
+7)
+  21jobclear nasup.sh
   ;;
 *)
   menu
