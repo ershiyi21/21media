@@ -418,6 +418,7 @@ cat /home/log/nasup.log
 }
 
 21rclonelog() {
+cat /home/log/rclone.temlog >> /home/log/rclone.log
 cat /home/log/rclone.log
 }
 
