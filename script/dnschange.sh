@@ -36,7 +36,7 @@ function dnsback() {
     [[ ! -f /etc/resolv.conf.dnsback ]] && exit 1
     sudo chattr -i /etc/resolv.conf
     mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
-    echo "系统dns已恢复,如还未恢复，请手动重启：reboot"
+    echo "系统dns已恢复,如还未恢复，请手动重启后恢复：reboot"
 }
 
 
