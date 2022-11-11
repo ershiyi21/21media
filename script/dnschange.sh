@@ -4,8 +4,8 @@
 [[ ! -f /etc/resolv.conf ]] && echo "该脚本修改DNS方法 不适合本系统！"
 [[ ! -f /etc/resolv.conf ]] && exit 1
 
-nslookup bing.com >/dev/null 2>$1
-if [[ $? =! 0 ]];then
+nslookup bing.com >/dev/null
+if [[ $? =! 0 ]] ;then
     sudo apt update || sudo yum update
     sudo apt install dnsutils -y || sudo yum install bind-utils -y
 fi
@@ -18,7 +18,7 @@ function dnsset() {
     sudo chattr +i /etc/resolv.conf
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
 
-    if [[ ${dns1} == "${dns2}" ]] ,then
+    if [[ ${dns1} == "${dns2}" ]] ;then
         echo "系统DNS已永久设置为 ${dns1} "
     
     else
