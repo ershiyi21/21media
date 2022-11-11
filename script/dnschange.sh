@@ -4,22 +4,6 @@
 [[ ! -f /etc/resolv.conf ]] && echo -e "该脚本修改DNS方法 不适合本系统！\n"
 [[ ! -f /etc/resolv.conf ]] && exit 2
 
-nslookup bing.com >/dev/null 2>&1
-if [[ $? != 0 ]] ;then
-    sudo apt update || sudo yum update
-    sudo apt install dnsutils -y || sudo yum install bind-utils -y
-    nslookup bing.com >/dev/null 2>&1
-    [[ $? != 0 ]] && exit 3
-fi
-
-ipv6calc -v >/dev/null 2>&1
-if [[ $? != 0 ]] ;then
-    sudo apt update || sudo yum update
-    sudo apt install ipv6calc -y || sudo yum install ipv6calc -y
-    ipv6calc -v >/dev/null 2>&1
-    [[ $? != 0 ]] && exit 4
-fi
-
 function dnsset() {
     [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
     sudo chattr -i /etc/resolv.conf
@@ -37,20 +21,33 @@ function dnsset() {
     echo "nameserver 1.1.1.1" >> /etc/resolv.conf
   
     sudo chattr +i /etc/resolv.conf
+    echo -e "系统DNS已设置为 ${dns1} ,即将联网检测是否设置成功...\n"
+}
+
+function dnscheck() {
+    nslookup bing.com >/dev/null 2>&1
+    if [[ $? != 0 ]] ;then
+        sudo apt update || sudo yum update
+        sudo apt install dnsutils -y || sudo yum install bind-utils -y
+        nslookup bing.com >/dev/null 2>&1
+        [[ $? != 0 ]] && echo "nslookup相关包安装失败！退出DNS设置检测" && exit 3
+    fi
+    
+    dns1=$1
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
     
     dns1=`ip_type ${dns1}`
     dns2=`ip_type ${dns2}`
     
     if [[ ${dns1} == "${dns2}" ]] ;then
-        echo -e "系统DNS已永久锁定为 ${dns1} \n"
+        echo -e "脚本检测确认，系统DNS已永久锁定为 ${dns1} \n"
         return 0
     else        
         sudo chattr -i /etc/resolv.conf
         rm /etc/resolv.conf
         mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
-	echo -e "DNS设置失败，已恢复原来系统设置\n"
-        return 5
+	echo -e "脚本检测确定，DNS设置失败，DNS已恢复为原来系统的DNS设置\n"
+        return 4
     fi
 }
 
@@ -60,55 +57,68 @@ function dnsback() {
     sudo chattr -i /etc/resolv.conf && \
     mv -f /etc/resolv.conf.dnsback /etc/resolv.conf && \
     echo -e "系统dns已恢复,如还未恢复，请手动重启恢复：reboot\n" && \
-    return 0 || return 6
+    return 0 || return 5
 }
 
+   
+
 function ip_type() {
-if [[ -n `echo $1 | grep ":"` ]] ;then
-    iprt=`ipv6calc --addr2compaddr -q $1`
-    [[ $? != 0 ]] && echo "ipv6输入有误，请检查！" && exit 7
-    echo ${iprt}
-else
-    echo $1
-fi
+    if [[ -n `echo $1 | grep ":"` ]] ;then
+        ipv6calc -v >/dev/null 2>&1
+        if [[ $? != 0 ]] ;then
+            sudo apt update || sudo yum update
+            sudo apt install ipv6calc -y || sudo yum install ipv6calc -y
+            ipv6calc -v >/dev/null 2>&1
+            [[ $? != 0 ]] && "ipv6calc安装失败!退出DNS设置检测" && exit 6
+        fi
+	
+	iprt=`ipv6calc --addr2compaddr -q $1`
+        [[ $? != 0 ]] && echo "ipv6输入有误，请检查！退出DNS设置检测" && exit 7
+        echo ${iprt}
+    else
+        echo $1
+    fi
 }
 
 function menu() {
-echo
-echo "1.设置DNS"
-echo "2.恢复DNS"
-echo "3.退出脚本"
-echo
-
-read -r -p "请输入数字：" selectnum 
-case $selectnum in
-    1)
-    dnsset
-    exit $?
-    ;;
-    2)
-    dnsback
-    exit $?
-    ;;
-    3)
     echo
-    exit
-    ;;
-    *)
-    echo -e "\n输入错误，请重新输入！\n"
-    menu
-    ;;
-esac
+    echo "1.设置DNS"
+    echo "2.恢复DNS"
+    echo "3.退出脚本"
+    echo 
+
+    read -r -p "请输入数字：" selectnum 
+    
+    case $selectnum in
+        1)
+          dnsset
+	  dnscheck ${dns1}
+          exit $?
+          ;;
+        2)
+          dnsback
+          exit $?
+          ;;
+	3)
+          echo
+          exit
+          ;;
+        *)
+          echo -e "\n输入错误，请重新输入！\n"
+          menu
+          ;;
+    esac
 }
 
 case $1 in
     [1sS])
-	  dnsset $2
+          dnsset $2
+	  dnscheck ${dns1}
 	  ;;
     [2bB])
 	  dnsback
 	  ;;
-        *)
+	*)
 	  menu
 	  ;;
 esac
