@@ -100,7 +100,7 @@ function menu() {
           exit $?
           ;;
 	3)
-          echo
+          echo -e "退出脚本...\n"
           exit
           ;;
         *)
