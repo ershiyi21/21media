@@ -26,16 +26,10 @@ function dnsset() {
 }
 
 function dnscheck() {
-    nslookup bing.com >/dev/null 2>&1
-    if [[ $? != 0 ]] ;then
-        sudo apt update || sudo yum update
-        sudo apt install dnsutils -y || sudo yum install bind-utils -y
-        nslookup bing.com >/dev/null 2>&1
-        [[ $? != 0 ]] && echo "nslookup相关包安装失败！退出DNS设置检测" && exit 3
-    fi
     
     dns1=$1
-    dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
+    dnsquery
+    dns2=$?
     
     dns1=`ip_type ${dns1}`
     dns2=`ip_type ${dns2}`
@@ -60,7 +54,18 @@ function dnsback() {
     return 0 || return 5
 }
 
-   
+function dnsquery() {
+    nslookup bing.com >/dev/null 2>&1
+    if [[ $? != 0 ]] ;then
+        sudo apt update || sudo yum update
+        sudo apt install dnsutils -y || sudo yum install bind-utils -y
+        nslookup bing.com >/dev/null 2>&1
+        [[ $? != 0 ]] && echo "nslookup相关包安装失败！退出DNS设置检测" && exit 3
+    fi
+    
+    dns=`nslookup bing.com | grep Server | awk '{print $2}'`
+    return ${dns}
+}
 
 function ip_type() {
     if [[ -n `echo $1 | grep ":"` ]] ;then
@@ -82,15 +87,20 @@ function ip_type() {
 
 function menu() {
     echo
+    echo "0.退出脚本"
     echo "1.设置DNS"
     echo "2.恢复DNS"
-    echo "3.退出脚本"
+    echo "4.系统DNS服务器查询"
     echo 
 
     read -r -p "请输入数字：" selectnum 
     
     case $selectnum in
-        1)
+        0)
+	  echo -e "退出脚本...\n"
+          exit
+          ;;
+	1)
           dnsset
 	  dnscheck ${dns1}
           exit $?
@@ -100,9 +110,8 @@ function menu() {
           exit $?
           ;;
 	3)
-          echo -e "退出脚本...\n"
-          exit
-          ;;
+          dnsquery
+	  echo "系统现在使用的首选DNS服务器为：$?\n"
         *)
           echo -e "\n输入错误，请重新输入！\n"
           menu
