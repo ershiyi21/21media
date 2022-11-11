@@ -1,20 +1,19 @@
 #!/bin/sh
 
 [[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！\n" && exit 1
-chattr -i /etc/resolv.conf >/dev/null 2>&1
-mv /etc/resolv.conf /etc/resolv.conf.link >/dev/null 2>&1
-touch /etc/resolv.conf && chattr +i /etc/resolv.conf >/dev/null 2>&1
-[[ $? != 0 ]] && echo -e "该脚本修改DNS方法 不适合本系统！\n" && exit 2
+touch /etc/resolv.conf.test && chattr +i /etc/resolv.conf.test >/dev/null 2>&1
+[[ $? != 0 ]] && echo -e "缺少chattr，该脚本修改DNS方法 不适合本系统！\n" && exit 2
+chattr -i /etc/resolv.conf.test >/dev/null 2>&1 && rm /etc/resolv.conf.test
 
 function dnsset() {
     [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
-    chattr -i /etc/resolv.conf
     
-    domain=`echo /etc/resolv.conf | grep domain`
-    search=`echo /etc/resolv.conf | grep search`
-    sortlist=`echo /etc/resolv.conf | grep sortlist`
-    
-    [[ ! -f /etc/resolv.conf.dnsback ]] && cp -f /etc/resolv.conf /etc/resolv.conf.dnsback
+    chattr -i /etc/resolv.conf >/dev/null 2>&1
+    [[ ! -f /etc/resolv.conf.dnsback ]] && mv /etc/resolv.conf /etc/resolv.conf.dnsback
+    rm -f /etc/resolv.conf >/dev/null 2>&1
+    domain=`cat /etc/resolv.conf.dnsback | grep domain`
+    search=`cat /etc/resolv.conf.dnsback | grep search`
+    sortlist=`cat /etc/resolv.conf.dnsback | grep sortlist`
     
     echo "${domain}" > /etc/resolv.conf
     echo "${search}" >> /etc/resolv.conf
@@ -46,7 +45,6 @@ function dnscheck() {
         return 0
     else        
         chattr -i /etc/resolv.conf
-        rm /etc/resolv.conf
         mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
 	echo -e "脚本检测确定，DNS设置失败，DNS已恢复为原来系统的DNS设置\n"
         return 4
