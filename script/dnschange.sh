@@ -127,7 +127,11 @@ case $1 in
     [2bB])
 	  dnsback
 	  ;;
-	*)
+    [3qQ])
+          dnsquery
+	  echo -e "系统现在使用的首选DNS服务器为：${dns}\n"
+	  ;;
+	 *)
 	  menu
 	  ;;
 esac
