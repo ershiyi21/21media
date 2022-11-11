@@ -46,7 +46,7 @@ function dnscheck() {
     else        
         chattr -i /etc/resolv.conf
         mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
-	echo -e "脚本检测确定，DNS设置失败，DNS已恢复为原来系统的DNS设置\n"
+	echo -e "脚本检测确定，DNS设置失败，DNS设置已自动恢复为原来系统的DNS设置\n"
         return 4
     fi
 }
@@ -56,7 +56,7 @@ function dnsback() {
     [[ ! -f /etc/resolv.conf.dnsback ]] && return 2
     chattr -i /etc/resolv.conf && \
     mv -f /etc/resolv.conf.dnsback /etc/resolv.conf && \
-    echo -e "系统dns已恢复,如还未恢复，请手动重启恢复：reboot\n" && \
+    echo -e "DNS设置已恢复为原来系统的DNS设置\n" && \
     return 0 || return 5
 }
 
