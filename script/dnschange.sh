@@ -43,13 +43,13 @@ function dnsset() {
     dns2=`ip_type ${dns2}`
     
     if [[ ${dns1} == "${dns2}" ]] ;then
-        echo -e "系统DNS已永久设置为 ${dns1} \n"
+        echo -e "系统DNS已永久锁定为 ${dns1} \n"
         return 0
-    else
-        echo -e "DNS设置失败，恢复原来系统设置\n"
+    else        
         sudo chattr -i /etc/resolv.conf
         rm /etc/resolv.conf
         mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
+	echo -e "DNS设置失败，已恢复原来系统设置\n"
         return 5
     fi
 }
@@ -126,7 +126,8 @@ return表示某个函数、模块的退出,后跟数字表示函数返回值,某
 其返回值仅仅代表函数模块的执行情况,如需要返回值传递到系统之外,可在函数模块调用后,利用 exit $? 退出系统主进程.
 
 一个脚本中执行另外一个脚本,另外一个脚本是系统层面再起一个程序运行的,ps -ef可查看,如前者有调用后者的函数模块,
-return仅仅代表后者的某个函数模块结束运行,但后者的剩下的命令仍会继续执行.但如果函数中含有exit,那么代表后者直接全部over了.
+return仅仅代表后者的某个函数模块结束运行,但后者的剩下的命令仍会继续执行.
+但如果函数中含有exit,那么代表后者直接全部over了,但也仅仅代表后者结束,前者依然会继续运行.
 
 简而言之,exit可处于任意位置(非函数模块内、函数内),只要调用,包含该函数的主程序就结束运行.
 return只能用于函数模块内,只能作为某个系统进程的一部分,return仅仅代表该部分的结束，该部分余下的命令不再运行,但函数外的命令仍旧运行.
