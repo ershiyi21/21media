@@ -16,7 +16,7 @@ function dnsset() {
     mv -f /etc/resolv.conf /etc/resolv.conf.dnsback
     echo "nameserver ${dns1}" > /etc/resolv.conf
     echo "nameserver 8.8.8.8" >> /etc/resolv.conf
-    chattr +i /etc/resolv.conf
+    sudo chattr +i /etc/resolv.conf
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
 
     if [[ ${dns1} == "${dns2}" ]] ;then
