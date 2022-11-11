@@ -11,7 +11,7 @@ if [[ $? != 0 ]] ;then
 fi
 
 function dnsset() {
-    [[ -z "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
+    [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
     mv -f /etc/resolv.conf /etc/resolv.conf.dnsback
     echo "nameserver ${dns1}" > /etc/resolv.conf
     echo "nameserver 8.8.8.8" >> /etc/resolv.conf
