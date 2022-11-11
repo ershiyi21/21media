@@ -24,8 +24,9 @@ function dnsset() {
     
     else
     echo "DNS设置失败，恢复原来系统设置"
-    sudo rm /etc/resolv.conf
-    sudo mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
+    sudo chattr -i /etc/resolv.conf
+    rm /etc/resolv.conf
+    mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
     
     fi
 }
@@ -34,7 +35,7 @@ function dnsback() {
     [[ ! -f /etc/resolv.conf.dnsback ]] && echo "无系统dns备份,退出脚本..." 
     [[ ! -f /etc/resolv.conf.dnsback ]] && exit 1
     sudo chattr -i /etc/resolv.conf
-    sudo mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
+    mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
     echo "系统dns已恢复,如还未恢复，请手动重启：reboot"
 }
 
