@@ -1,22 +1,29 @@
-# 在线媒体下载&管理一键安装脚本
-- 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.
-- 配置好nas-tools媒体库等设置.
-- 仅适用于debian&ubuntu系统.
-- nas-tools硬链接文件到其它目录，rclone实时借助api上传云端，做种&上传两不误
-- rclone上传线程可控，同时运行进程数数唯一，不会出现单文件多传或rclone重复运行导致服务器过载死机
+# 21那点事
 
-## 一键安装脚本：
+## dns修改脚本
+```
+bash <(curl -L -s https://raw.githubusercontent.com/ershiyi21/21media/main/script/dnschange.sh)
+```
+
+## nas-tool套件安装脚本
 ```
 cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/21media/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
 ```
 
  注：tmdb_api申请地址：https://www.themoviedb.org/settings/api
 
-## 安装后打开脚本
+- 一键安装运行nas-tools,jackett,qbittorrent,chinesesubfinder,rclone.
+- 配置好nas-tools媒体库等设置.
+- 仅适用于debian&ubuntu系统.
+- nas-tools硬链接文件到其它目录，rclone实时借助api上传云端，做种&上传两不误
+- rclone上传线程可控，同时运行进程数数唯一，不会出现单文件多传或rclone重复运行导致服务器过载死机
+
+
+### 安装后打开脚本
 ```
 21media
 ```
-## 安装后指南：
+### 安装后指南：
 1、删除文件/home/shh/rclone.conf，复制rclone配置文件到目录/home/shh/下,并且重启服务器.若未进行该操作，则不会进行进行rclone上传.
 
 2、修改qbittorrent用户名,密码
@@ -36,7 +43,7 @@ http://ip:3000
 ```
 http://ip:19035
 ```
-## 脚本运行逻辑
+### 脚本运行逻辑
  - nas-tools借助qbittorrent下载种子
  - nas-tools识别、重命名、移动（硬链接）下载文件
  - nas-tools通知chinesesubfinder字幕下载
@@ -45,7 +52,7 @@ http://ip:19035
  
    注：emby入库tg通知需要自己配置，项目地址 https://github.com/bjoerns1983/Emby.Plugin.TelegramNotification
 
-## 媒体分类
+### 媒体分类
 - 电影：动漫、华语、欧美、日韩、未分类
 - 剧集：国产剧、日韩剧、欧美剧、儿童、纪录片、综艺、未分类
 - 动漫：国内、国外 【动漫剧集单独分类】
