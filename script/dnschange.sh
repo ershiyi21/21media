@@ -13,7 +13,7 @@ fi
 function dnsset() {
     [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
     sudo chattr -i /etc/resolv.conf
-    cp -f /etc/resolv.conf /etc/resolv.conf.dnsback
+    [[ ! -f /etc/resolv.conf.dnsback ]] && cp -f /etc/resolv.conf /etc/resolv.conf.dnsback
     echo "nameserver ${dns1}" > /etc/resolv.conf
     echo "nameserver 8.8.8.8" >> /etc/resolv.conf
     sudo chattr +i /etc/resolv.conf
