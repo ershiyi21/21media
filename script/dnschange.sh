@@ -31,10 +31,10 @@ function dnscheck() {
     dnsquery
     dns2=${dns}
     
-    dns1=`ip_type ${dns1}`
-    dns2=`ip_type ${dns2}`
+    dns3=`ip_type ${dns1}`
+    dns4=`ip_type ${dns2}`
     
-    if [[ ${dns1} == "${dns2}" ]] ;then
+    if [[ ${dns3} == "${dns4}" ]] ;then
         echo -e "脚本检测确认，系统DNS已永久锁定为 ${dns1} \n"
         return 0
     else        
