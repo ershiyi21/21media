@@ -41,8 +41,8 @@ function dnsback() {
 
 
 function menu() {
-echo "1.设置新的DNS"
-echo "2.恢复系统自带DNS设置"
+echo "1.设置DNS"
+echo "2.恢复DNS"
 echo "3.退出脚本"
 
 read -r -p "请输入数字：" selectnum 
