@@ -26,8 +26,8 @@ function dnsset() {
 }
 
 function dnsback() {
-    [[ ! -f /etc/resolv.conf.back ]] || echo "无系统dns备份,退出脚本..." 
-    [[ ! -f /etc/resolv.conf.back ]] || exit 1
+    [[ ! -f /etc/resolv.conf.back ]] && echo "无系统dns备份,退出脚本..." 
+    [[ ! -f /etc/resolv.conf.back ]] && exit 1
     mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
     echo "系统dns已恢复,如还未恢复，请手动重启：reboot"
 }
