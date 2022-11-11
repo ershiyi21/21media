@@ -90,7 +90,7 @@ function menu() {
     echo "0.退出脚本"
     echo "1.设置DNS"
     echo "2.恢复DNS"
-    echo "4.系统DNS服务器查询"
+    echo "3.系统DNS服务器查询"
     echo 
 
     read -r -p "请输入数字：" selectnum 
