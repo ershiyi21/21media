@@ -5,7 +5,7 @@
 [[ ! -f /etc/resolv.conf ]] && exit 1
 
 nslookup bing.com >/dev/null
-if [[ $? =! 0 ]] ;then
+if [[ $? != 0 ]] ;then
     sudo apt update || sudo yum update
     sudo apt install dnsutils -y || sudo yum install bind-utils -y
 fi
