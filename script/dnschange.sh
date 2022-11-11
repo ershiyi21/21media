@@ -29,7 +29,7 @@ function dnscheck() {
     
     dns1=$1
     dnsquery
-    dns2=$?
+    dns2=${dns}
     
     dns1=`ip_type ${dns1}`
     dns2=`ip_type ${dns2}`
@@ -64,7 +64,6 @@ function dnsquery() {
     fi
     
     dns=`nslookup bing.com | grep Server | awk '{print $2}'`
-    return ${dns}
 }
 
 function ip_type() {
@@ -111,7 +110,7 @@ function menu() {
           ;;
 	3)
           dnsquery
-	  echo "系统现在使用的首选DNS服务器为：$?\n"
+	  echo "系统现在使用的首选DNS服务器为：${dns}\n"
 	  ;;
         *)
           echo -e "\n输入错误，请重新输入！\n"
