@@ -4,13 +4,13 @@
 [[ ! -f /etc/resolv.conf ]] && echo "该脚本修改DNS方法 不适合本系统！"
 [[ ! -f /etc/resolv.conf ]] && exit 1
 
-nslookup bing.com >/dev/null
+nslookup bing.com >/dev/null 2>&1
 if [[ $? != 0 ]] ;then
     sudo apt update || sudo yum update
     sudo apt install dnsutils -y || sudo yum install bind-utils -y
 fi
 
-ipv6calc -v >/dev/null
+ipv6calc -v >/dev/null 2>&1
 if [[ $? != 0 ]] ;then
     sudo apt update || sudo yum update
     sudo apt install ipv6calc -y || sudo yum install ipv6calc -y
