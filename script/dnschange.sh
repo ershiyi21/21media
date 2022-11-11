@@ -14,7 +14,7 @@ function dnsset() {
     sudo chattr +i /etc/resolv.conf
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
 
-    if [[ ${dns1} == "${dns2}" ]] ,then
+    if [[ ${dns1} == "${dns2}" ]] ;then
         echo "系统DNS已永久设置为 ${dns1} "
     
     else
