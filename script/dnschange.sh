@@ -112,6 +112,7 @@ function menu() {
 	3)
           dnsquery
 	  echo "系统现在使用的首选DNS服务器为：$?\n"
+	  ;;
         *)
           echo -e "\n输入错误，请重新输入！\n"
           menu
