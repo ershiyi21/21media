@@ -15,7 +15,7 @@ function dnsset() {
     sudo chattr -i /etc/resolv.conf
     [[ ! -f /etc/resolv.conf.dnsback ]] && cp -f /etc/resolv.conf /etc/resolv.conf.dnsback
     echo "nameserver ${dns1}" > /etc/resolv.conf
-    echo "nameserver 8.8.8.8" >> /etc/resolv.conf
+    echo "nameserver 1.1.1.1" >> /etc/resolv.conf
     sudo chattr +i /etc/resolv.conf
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
 
@@ -41,8 +41,8 @@ function dnsback() {
 
 
 function menu() {
-echo "1.设置DNS"
-echo "2.恢复系原来DNS"
+echo "1.设置新的DNS"
+echo "2.恢复系统自带DNS设置"
 echo "3.退出脚本"
 
 read -r -p "请输入数字：" selectnum 
