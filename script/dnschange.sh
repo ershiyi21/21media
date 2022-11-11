@@ -13,7 +13,7 @@ fi
 function dnsset() {
     [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
     sudo chattr -i /etc/resolv.conf
-    mv -f /etc/resolv.conf /etc/resolv.conf.dnsback
+    cp -f /etc/resolv.conf /etc/resolv.conf.dnsback
     echo "nameserver ${dns1}" > /etc/resolv.conf
     echo "nameserver 8.8.8.8" >> /etc/resolv.conf
     sudo chattr +i /etc/resolv.conf
@@ -24,8 +24,8 @@ function dnsset() {
     
     else
     echo "DNS设置失败，恢复原来系统设置"
-    rm /etc/resolv.conf
-    mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
+    sudo rm /etc/resolv.conf
+    sudo mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
     
     fi
 }
@@ -33,7 +33,8 @@ function dnsset() {
 function dnsback() {
     [[ ! -f /etc/resolv.conf.dnsback ]] && echo "无系统dns备份,退出脚本..." 
     [[ ! -f /etc/resolv.conf.dnsback ]] && exit 1
-    mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
+    sudo chattr -i /etc/resolv.conf
+    sudo mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
     echo "系统dns已恢复,如还未恢复，请手动重启：reboot"
 }
 
