@@ -1,8 +1,8 @@
 #!/bin/sh
 
 [[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！\n" && exit 1
-[[ ! -f /etc/resolv.conf ]] && echo -e "该脚本修改DNS方法 不适合本系统！\n"
-[[ ! -f /etc/resolv.conf ]] && exit 2
+chattr +i /etc/resolv.conf
+[[ $? != 0 ]] && echo -e "该脚本修改DNS方法 不适合本系统！\n" && exit 2
 
 function dnsset() {
     [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
