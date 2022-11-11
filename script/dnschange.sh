@@ -121,14 +121,17 @@ function menu() {
 
 case $1 in
     [1sS])
-          dnsset $2
+          echo
+	  dnsset $2
 	  dnscheck ${dns1}
 	  ;;
     [2bB])
+	  echo
 	  dnsback
 	  ;;
     [3qQ])
-          dnsquery
+          echo
+	  dnsquery
 	  echo -e "系统现在使用的首选DNS服务器为：${dns}\n"
 	  ;;
 	 *)
