@@ -38,7 +38,7 @@ echo "1.设置DNS"
 echo "2.恢复系原来DNS"
 echo "3.退出脚本"
 
-read -r -p selectnum
+read -r -p "请输入数字： " selectnum
 case $selectnum in
     1)
     dnsset
