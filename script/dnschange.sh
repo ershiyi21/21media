@@ -1,7 +1,7 @@
 #!/bin/sh
 
-[[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！" && exit 1
-[[ ! -f /etc/resolv.conf ]] && echo "该脚本修改DNS方法 不适合本系统！"
+[[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！\n" && exit 1
+[[ ! -f /etc/resolv.conf ]] && echo -e "该脚本修改DNS方法 不适合本系统！\n"
 [[ ! -f /etc/resolv.conf ]] && exit 1
 
 nslookup bing.com >/dev/null 2>&1
@@ -29,10 +29,10 @@ function dnsset() {
     dns2=`ip_type ${dns2}`
     
     if [[ ${dns1} == "${dns2}" ]] ;then
-        echo "系统DNS已永久设置为 ${dns1} "
+        echo -e "系统DNS已永久设置为 ${dns1} \n"
     
     else
-    echo "DNS设置失败，恢复原来系统设置"
+    echo -e "DNS设置失败，恢复原来系统设置\n"
     sudo chattr -i /etc/resolv.conf
     rm /etc/resolv.conf
     mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
@@ -41,11 +41,11 @@ function dnsset() {
 }
 
 function dnsback() {
-    [[ ! -f /etc/resolv.conf.dnsback ]] && echo "无系统dns备份,退出脚本..." 
+    [[ ! -f /etc/resolv.conf.dnsback ]] && echo -e "无系统dns备份,退出脚本...\n" 
     [[ ! -f /etc/resolv.conf.dnsback ]] && exit 1
     sudo chattr -i /etc/resolv.conf
     mv -f /etc/resolv.conf.dnsback /etc/resolv.conf
-    echo "系统dns已恢复,如还未恢复，请手动重启后恢复：reboot"
+    echo -e "系统dns已恢复,如还未恢复，请手动重启恢复：reboot\n"
 }
 
 function ip_type() {
@@ -57,9 +57,11 @@ fi
 }
 
 function menu() {
+echo
 echo "1.设置DNS"
 echo "2.恢复DNS"
 echo "3.退出脚本"
+echo
 
 read -r -p "请输入数字：" selectnum 
 case $selectnum in
@@ -73,7 +75,7 @@ case $selectnum in
     exit 1
     ;;
     *)
-    echo "输入错误"
+    echo -e "\n输入错误\n"
     menu
     ;;
 esac
