@@ -1,11 +1,12 @@
-# 21那点事
+# 21的脚本
 
-## dns修改脚本
+
+## dns修改
 ```
 bash <(curl -L -s https://raw.githubusercontent.com/ershiyi21/21media/main/script/dnschange.sh)
 ```
 
-## nas-tool套件安装脚本
+## nas-tool套件安装
 ```
 cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiyi21/21media/main/nastools/21media.sh && chmod +x 21media.sh && bash 21media.sh
 ```
