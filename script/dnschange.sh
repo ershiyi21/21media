@@ -10,6 +10,12 @@ if [[ $? != 0 ]] ;then
     sudo apt install dnsutils -y || sudo yum install bind-utils -y
 fi
 
+ipv6calc -h >/dev/null
+if [[ $? != 0 ]] ;then
+    sudo apt update || sudo yum update
+    sudo apt install ipv6calc -y || sudo yum install ipv6calc -y
+fi
+
 function dnsset() {
     [[ -n "$1" ]] && dns1=$1 || read -r -p "请输入DNS IP: " dns1
     sudo chattr -i /etc/resolv.conf
@@ -18,7 +24,10 @@ function dnsset() {
     echo "nameserver 1.1.1.1" >> /etc/resolv.conf
     sudo chattr +i /etc/resolv.conf
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
-
+    
+    dns1=`ip_type dns1`
+    dns2=`ip_type dns2`
+    
     if [[ ${dns1} == "${dns2}" ]] ;then
         echo "系统DNS已永久设置为 ${dns1} "
     
@@ -39,6 +48,13 @@ function dnsback() {
     echo "系统dns已恢复,如还未恢复，请手动重启后恢复：reboot"
 }
 
+function ip_type() {
+if [[ -n `echo $1 | grep ":"` ]] ;then
+    echo `ipv6calc --addr2compaddr -q $1`
+else
+    echo $1
+fi
+}
 
 function menu() {
 echo "1.设置DNS"
