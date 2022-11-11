@@ -3,7 +3,7 @@
 [[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！" && exit 1
 [[ ! -f /etc/resolv.conf ]] && echo "该脚本修改DNS方法 不适合本系统！"
 [[ ! -f /etc/resolv.conf ]] && exit 1
-sudo update
+sudo apt update || sudo yum update
 sudo apt install dnsutils -y || sudo yum install bind-utils -y
 
 function dnsset() {
