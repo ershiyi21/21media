@@ -72,10 +72,11 @@ case $selectnum in
     dnsback
     ;;
     3)
+    echo
     exit 1
     ;;
     *)
-    echo -e "\n输入错误\n"
+    echo -e "\n输入错误，请重新输入！\n"
     menu
     ;;
 esac
