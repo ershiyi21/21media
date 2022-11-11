@@ -1,7 +1,9 @@
 #!/bin/sh
 
 [[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！\n" && exit 1
-chattr +i /etc/resolv.conf
+chattr -i /etc/resolv.conf >/dev/null 2>&1
+mv /etc/resolv.conf /etc/resolv.conf.link >/dev/null 2>&1
+touch /etc/resolv.conf && chattr +i /etc/resolv.conf >/dev/null 2>&1
 [[ $? != 0 ]] && echo -e "该脚本修改DNS方法 不适合本系统！\n" && exit 2
 
 function dnsset() {
