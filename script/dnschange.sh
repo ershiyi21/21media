@@ -10,7 +10,7 @@ if [[ $? != 0 ]] ;then
     sudo apt install dnsutils -y || sudo yum install bind-utils -y
 fi
 
-ipv6calc -h >/dev/null
+ipv6calc -v >/dev/null
 if [[ $? != 0 ]] ;then
     sudo apt update || sudo yum update
     sudo apt install ipv6calc -y || sudo yum install ipv6calc -y
@@ -25,8 +25,8 @@ function dnsset() {
     sudo chattr +i /etc/resolv.conf
     dns2=`nslookup bing.com | grep Server | awk '{print $2}'`
     
-    dns1=`ip_type dns1`
-    dns2=`ip_type dns2`
+    dns1=`ip_type ${dns1}`
+    dns2=`ip_type ${dns2}`
     
     if [[ ${dns1} == "${dns2}" ]] ;then
         echo "系统DNS已永久设置为 ${dns1} "
