@@ -24,6 +24,7 @@ function dnsset() {
     echo "${sortlist}" >> /etc/resolv.conf   
     echo "nameserver ${dns1}" >> /etc/resolv.conf
     echo "nameserver 1.1.1.1" >> /etc/resolv.conf
+    echo "nameserver 2606:4700:4700::1111" >> /etc/resolv.conf
   
     chattr +i /etc/resolv.conf
     echo -e "系统DNS已设置为 ${dns1} ,即将检测是否设置成功...\n"
