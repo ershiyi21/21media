@@ -33,6 +33,7 @@ function dnsset() {
 function dnsget() {
     local_dns=`cat /etc/resolv.conf | grep nameserver | head -n 1 | awk '{print $2}'`
     dnsget=${local_dns}
+    dnstype="本地"
     
     nslookup bing.com >/dev/null 2>&1
     if [[ $? != 0 ]] ;then
@@ -44,6 +45,7 @@ function dnsget() {
     
     online_dns=`nslookup bing.com | grep Server | awk '{print $2}'`
     dnsget=${online_dns}
+    dnstype="联网"
     return 0
 }
 
@@ -51,20 +53,18 @@ function dnsget() {
 function dnscheck() {
     dns1=$1
     dnsget
-    [[ $? == 0 ]] && dns_type="联网"
-    [[ $? == 1 ]] && dns_type="本地"
     dns2=${dnsget}
     
     dns3=`ip_type ${dns1}`
     dns4=`ip_type ${dns2}`
     
     if [[ ${dns3} == "${dns4}" ]] ;then
-	echo -e "${dns_type}检测显示，系统DNS已永久锁定为 ${dns1} \n"
+	echo -e "${dnstype}检测显示，系统DNS已永久锁定为 ${dns1} \n"
 	return 0
     else
 	chattr -i /etc/resolv.conf
         mv -f /etc/resolv.conf.dnsback /etc/resolv.conf 
-	echo -e "${dns_type}检测显示，DNS设置失败；DNS设置已自动恢复为原来系统的DNS设置\n"
+	echo -e "${dnstype}检测显示，DNS设置失败；DNS设置已自动恢复为原来系统的DNS设置\n"
 	return 1
     fi
 }
@@ -125,7 +125,7 @@ function menu() {
           ;;
 	3)
           dnsget
-	  echo -e "系统当前首选DNS服务器为：${dnsget}\n"
+	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为：${dnsget}\n"
 	  ;;
         *)
           echo -e "\n输入错误，请重新输入！\n"
@@ -150,7 +150,7 @@ case $1 in
     [3qQ])
           echo
 	  dnsget
-	  echo -e "系统当前首选DNS服务器为：${dnsget}\n"
+	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为：${dnsget}\n"
 	  ;;
 	 *)
 	  menu
