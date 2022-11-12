@@ -148,7 +148,7 @@ case $1 in
 	  dnsback
 	  exit $?
 	  ;;
-    [3qQ])
+    [3gG])
           echo
 	  dnsget
 	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为：${dnsget}\n"
