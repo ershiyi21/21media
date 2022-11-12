@@ -126,7 +126,7 @@ function menu() {
           ;;
 	3)
           dnsget
-	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为：${dnsget}\n"
+	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为： ${dnsget}\n"
 	  ;;
         *)
           echo -e "\n输入错误，请重新输入！\n"
@@ -151,7 +151,7 @@ case $1 in
     [3gG])
           echo
 	  dnsget
-	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为：${dnsget}\n"
+	  echo -e "${dnstype}检测显示，系统当前首选DNS服务器为： ${dnsget}\n"
 	  ;;
 	 *)
 	  menu
