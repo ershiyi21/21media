@@ -43,17 +43,17 @@ rclone_exclude=""  #rclone上传排除的目录.如xxx/
 #tg通知与日志输出
 tgnotice() {
     curl -s -X POST "https://api.telegram.org/bot${tg_bot_token}/sendMessage" -d chat_id=${tg_chat_id} -d text="${1}"
-	echo ${1} >> ${log_dir}
+    echo ${1} >> ${log_dir}
 }
 
 #rclone上传
 21rcloneup() {
     try_num=$1
-	tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] rclone第${try_num}次上传开始."
+    tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] rclone第${try_num}次上传开始."
     /usr/bin/rclone move -v ${local_dir} ${remote_dir} \
     --exclude ${rclone_exclude} \
-	--transfers ${rclone_num} --config ${rclone_config_dir} \
-	>> ${rclone_temlog_dir} 2>&1 &&
+    --transfers ${rclone_num} --config ${rclone_config_dir} \
+    >> ${rclone_temlog_dir} 2>&1 && \
     tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] rclone第${try_num}次上传完成."
 }
 
@@ -74,19 +74,20 @@ do
     tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,休眠10s，nfo识别字幕下载"   
     sleep 10s
  
-	[ ! `/usr/bin/rclone ls ${local_dir} --include ${rclone_exclude}| wc -l` -eq 0 ] \
-	&& tgnotice "已排除目录 ${local_dir}${rclone_exclude} 有新文件移入."
+    [ ! `/usr/bin/rclone ls ${local_dir} --include ${rclone_exclude}| wc -l` -eq 0 ] && \
+    tgnotice "已排除目录 ${local_dir}${rclone_exclude} 有新文件移入."
 	
-	try_num=1  
-	while 
+    try_num=1  
+    
+    while 
     [ ! `/usr/bin/rclone ls ${local_dir} --exclude ${rclone_exclude}| wc -l` -eq 0 ]
     do	   
         21rcloneup ${try_num}
-        
         let try_num=${try_num}+1		
     done
 
-    sleep 2m
+    tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 6分钟后扫描媒体库！"
+    sleep 6m
     21embyrefresh 
    
     tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 文件已全部上传,继续监控文件夹！"	
