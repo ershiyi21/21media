@@ -465,7 +465,7 @@ exit 1
 	do
         kill -9 $(ps -ef | grep ${job} | grep -v grep | awk '{print $2}')
     done
-	nohup bash /home/shh/nasup.sh & >> /dev/null
+	nohup bash /home/shh/nasup.sh >/dev/null 2>&1 &
 	echo -e "${green}nasup.sh已重新启动！${plain}"
 }	
 
