@@ -18,7 +18,8 @@ rclone_exclude=""  #rclone上传排除的目录.如xxx/
 21embyrefresh() {
     a=`cat ${rclone_temlog_dir}|grep Copied|cut -d ":" -f 4|cut -d "/" -f 1-3|cut -b 2-|grep '[[:blank:]]([[:digit:]]\{4\})$'|sort -u|wc -l`
     tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] emby即将扫描文件夹数：${a}."
-	for((i=1;i<=${a};i++)); 
+    
+    for((i=1;i<=${a};i++)); 
     do   
         b=`cat ${rclone_temlog_dir}|grep Copied|cut -d ":" -f 4|cut -d "/" -f 1-3|cut -b 2-|grep '[[:blank:]]([[:digit:]]\{4\})$'|sort -u|sed -n "${i}p"`
         tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] emby开始扫库${emby_dir}${b}..."          
