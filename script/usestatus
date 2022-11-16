@@ -1,0 +1,31 @@
+#!/bin/sh
+log_dir=$1
+
+#ip6tables -I OUTPUT -d $1 -j ACCEPT
+#echo "    pkts      bytes target     prot opt in     out     source               destination"
+#[[ `echo -e "${a} < 1024" | bc` == 1 ]]
+
+a=`ip6tables -L OUTPUT -v -n -x | grep "$1" | awk '{print $2}'`
+[[ -z $a ]] && echo "无对应规则" && exit 2
+
+for((i=1;i<=1;i++))
+#while true
+do
+a=`ip6tables -L OUTPUT -v -n -x | grep "$1" | awk '{print $2}'`
+b=${a}
+[[ ${b} -lt 1023 ]] && echo "$(date "+%Y-%m-%d %H:%M:%S") $1 ${b} ${a}byte" >> ${log_dir} && sleep 3 && continue
+
+a=$(printf "%.2f" `echo "scale=2;${a}/1024"|bc`)
+[[ ${b} -lt 1048575 ]] && echo "$(date "+%Y-%m-%d %H:%M:%S") $1 ${b} ${a}bit" >> ${log_dir} && sleep 3 && continue
+
+a=$(printf "%.2f" `echo "scale=2;${a}/1024"|bc`)
+[[ ${b} -lt 1073741823 ]] && echo "$(date "+%Y-%m-%d %H:%M:%S") $1 ${b} ${a}MB" >> ${log_dir} && sleep 3 && continue
+
+a=$(printf "%.2f" `echo "scale=2;${a}/1024"|bc`)
+[[ ${b} -lt 1099511627775 ]] && echo "$(date "+%Y-%m-%d %H:%M:%S") $1 ${b} ${a}G">> ${log_dir}  && sleep 3 && continue
+
+a=$(printf "%.2f" `echo "scale=2;${a}/1024"|bc`)
+echo "$(date "+%Y-%m-%d %H:%M:%S") $1 ${b} ${a}T" >> ${log_dir}
+sleep 3
+
+done
