@@ -72,7 +72,7 @@ while
 inotifywait -r $local_dir -e modify,delete,create,attrib,move;
 
 do  
-    tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,休眠10s，nfo识别字幕下载"   
+    tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 检测到文件异动,10s后开始处理..."   
     sleep 10s
  
     [ ! `/usr/bin/rclone ls ${local_dir} --include ${rclone_exclude}| wc -l` -eq 0 ] && \
