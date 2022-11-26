@@ -62,7 +62,7 @@ tgnotice() {
 tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 开始运行脚本"
 if [ ! -s "/home/shh/rclone.conf" ] ; then
 tgnotice "rclone配置文件未复制到目录/home/shh/ 退出nasup脚本"
-exit 1s
+exit 2
 fi
 
 
@@ -82,14 +82,12 @@ do
     
     while 
     [ ! `/usr/bin/rclone ls ${local_dir} --exclude ${rclone_exclude}| wc -l` -eq 0 ]
+    
     do	   
         21rcloneup ${try_num}
+	21embyrefresh 
         let try_num=${try_num}+1		
     done
-
-    tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 6分钟后扫描媒体库！"
-    sleep 6m
-    21embyrefresh 
    
     tgnotice "[$(date "+%Y-%m-%d %H:%M:%S")] 文件已全部上传,继续监控文件夹！"	
 	
