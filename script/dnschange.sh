@@ -2,10 +2,6 @@
 
 ##环境检测
 [[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！\n" && exit 2
-touch /etc/resolv.conf.test && chattr +i /etc/resolv.conf.test >/dev/null 2>&1
-[[ $? != 0 ]] && echo -e "缺少chattr，该脚本修改DNS方法 不适合本系统！\n" && \
-chattr -i /etc/resolv.conf.test >/dev/null 2>&1 && rm /etc/resolv.conf.test && exit 3
-chattr -i /etc/resolv.conf.test >/dev/null 2>&1 && rm /etc/resolv.conf.test
 
 ##DNS设置
 function dnsset() {
@@ -89,11 +85,11 @@ function ip_type() {
             sudo apt-get update || sudo yum update
             sudo apt-get install ipv6calc -y || sudo yum install ipv6calc -y
             ipv6calc -v >/dev/null 2>&1
-            [[ $? != 0 ]] && "ipv6calc安装失败!退出DNS设置检测" && exit 4
+            [[ $? != 0 ]] && "ipv6calc安装失败!退出DNS设置检测" && exit 3
         fi
 	
 	iprt=`ipv6calc --addr2compaddr -q $1`
-        [[ $? != 0 ]] && echo "ipv6输入有误，请检查！退出DNS设置检测" && exit 5
+        [[ $? != 0 ]] && echo "ipv6输入有误，请检查！退出DNS设置检测" && exit 4
         echo ${iprt}
     else
         echo $1
