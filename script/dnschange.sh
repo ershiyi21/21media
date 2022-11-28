@@ -3,8 +3,8 @@
 ##环境检测
 [[ $EUID -ne 0 ]] && echo -e "必须使用root用户运行此脚本！\n" && exit 2
 touch /etc/resolv.conf.test && chattr +i /etc/resolv.conf.test >/dev/null 2>&1
-[[ $? != 0 ]] && echo -e "缺少chattr，该脚本修改DNS方法 不适合本系统！\n" && exit 3
-chattr -i /etc/resolv.conf.test >/dev/null 2>&1 && rm /etc/resolv.conf.test
+[[ $? != 0 ]] && echo -e "缺少chattr，该脚本修改DNS方法 不适合本系统！\n" && \
+chattr -i /etc/resolv.conf.test >/dev/null 2>&1 && rm /etc/resolv.conf.test && exit 3
 
 ##DNS设置
 function dnsset() {
