@@ -85,7 +85,7 @@ function ip_type() {
             sudo apt-get update || sudo yum update
             sudo apt-get install ipv6calc -y || sudo yum install ipv6calc -y
             ipv6calc -v >/dev/null 2>&1
-            [[ $? != 0 ]] && "ipv6calc安装失败!退出DNS设置检测" && exit 3
+            [[ $? != 0 ]] && echo "ipv6calc安装失败!退出DNS设置检测" && exit 3
         fi
 	
 	iprt=`ipv6calc --addr2compaddr -q $1`
