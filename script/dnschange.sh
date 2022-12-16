@@ -35,8 +35,8 @@ function dnsget() {
     
     nslookup bing.com >/dev/null 2>&1
     if [[ $? != 0 ]] ;then
-        sudo apt-get update || sudo yum update
-        sudo apt-get install dnsutils -y || sudo yum install bind-utils -y
+        apt-get update -y || yum update -y
+        apt-get install dnsutils -y || yum install bind-utils -y
         nslookup bing.com >/dev/null 2>&1
         [[ $? != 0 ]] && return 1
     fi
@@ -82,8 +82,8 @@ function ip_type() {
     if [[ -n `echo $1 | grep ":"` ]] ;then
         ipv6calc -v >/dev/null 2>&1
         if [[ $? != 0 ]] ;then
-            sudo apt-get update || sudo yum update
-            sudo apt-get install ipv6calc -y || sudo yum install ipv6calc -y
+            apt-get update -y || yum update -y
+            apt-get install ipv6calc -y || yum install ipv6calc -y
             ipv6calc -v >/dev/null 2>&1
             [[ $? != 0 ]] && echo "ipv6calc安装失败!退出DNS设置检测" && exit 3
         fi
