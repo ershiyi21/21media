@@ -13,8 +13,9 @@ tg_chat_id= #tg发送消息对象id
 tg_bot_token= #tg机器人token
 rclone_exclude=""  #rclone上传排除的目录.如xxx/
 
-#引入rclone代理变量
+#引入rclone代理
 #export http_proxy=http://127.0.0.1:1080
+#export http_proxy=socks5://127.0.0.1:1080
 #export https_proxy=$http_proxy
 
 #emby扫库
