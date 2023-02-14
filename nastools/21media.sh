@@ -469,6 +469,23 @@ exit 1
 	echo -e "${green}nasup.sh已重新启动！${plain}"
 }	
 
+21nas-tools-up() {
+    docker stop nas-tools ;docker rm nas-tools ;docker rmi jxxghp/nas-tools
+    docker run -d  \
+    --restart=always \
+    --name nas-tools \
+    --hostname nas-tools \
+    -p 3000:3000   `# 默认的webui控制端口` \
+    -v /home/nastools/config:/config  `# 冒号左边请修改为你想在主机上保存配置文件的路径` \
+    -v /home/nastools/media:/media    `# 媒体目录，多个目录需要分别映射进来` \
+    -e PUID=0     `# 想切换为哪个用户来运行程序，该用户的uid，详见下方说明` \
+    -e PGID=0     `# 想切换为哪个用户来运行程序，该用户的gid，详见下方说明` \
+    -e UMASK=000  `# 掩码权限，默认000，可以考虑设置为022` \
+    -e NASTOOL_AUTO_UPDATE=false `# 如需在启动容器时自动升级程程序请设置为true` \
+    jxxghp/nas-tools
+}
+
+
 menu() {
 echo
 echo -e "${green}作者:ershiyi21${plain}"
@@ -485,6 +502,7 @@ echo -e "${green}5.${plain}nasup.sh脚本日志"
 echo -e "${green}6.${plain}rclone程序日志"
 echo -e "${green}--------------其它功能----------------${plain}"、
 echo -e "${green}7.${plain}nasup.sh重新启动"
+echo -e "${green}8.${plain}nas-tools版本更新"
 echo -e "${green}-------------------------------------${plain}"
 21shortcut
 echo -e -n "${green}请选择: ${plain}"
@@ -513,6 +531,9 @@ case $selectnum in
   ;;
 7)
   21jobclear nasup.sh
+  ;;
+8)
+  21nas-tools-up
   ;;
 *)
   menu
