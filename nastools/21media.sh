@@ -287,7 +287,7 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
    echo -e "${green}开始安装宿主机版qbittorrent${plain}"
-   wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.5.0_v2.0.8/x86_64-qbittorrent-nox &&
+   wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/download/release-4.5.2_v2.0.8/x86_64-qbittorrent-nox &&
    chmod 700 "/usr/local/bin/x86_64-qbittorrent-nox" &&
    echo "[Unit]" > /etc/systemd/system/qbit.service &&
    echo "Description=qBittorrent Service" >> /etc/systemd/system/qbit.service &&
