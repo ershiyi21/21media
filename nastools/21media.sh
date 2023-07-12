@@ -109,7 +109,7 @@ docker run -d  \
     -e PGID=0     `# 想切换为哪个用户来运行程序，该用户的gid，详见下方说明` \
     -e UMASK=000  `# 掩码权限，默认000，可以考虑设置为022` \
     -e NASTOOL_AUTO_UPDATE=false `# 如需在启动容器时自动升级程程序请设置为true` \
-    jxxghp/nas-tools
+    nastool/nas-tools:latest
 sleep 2
 docker restart nas-tools
 [[ $? == 0 ]] && echo -e "${green}nas-tools安装成功！${plain}" || echo -e "${green}nas-tools安装失败！${plain}"
