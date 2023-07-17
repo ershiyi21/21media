@@ -14,6 +14,7 @@ cd /root && apt install wget -y && wget https://raw.githubusercontent.com/ershiy
 ## iptv源
 [贵州移动
 ](https://raw.githubusercontent.com/ershiyi21/21media/main/iptv/gzyd.m3u)
+
 [EPG 电子节目表
 ](https://epg.112114.xyz/pp.xml
 )
