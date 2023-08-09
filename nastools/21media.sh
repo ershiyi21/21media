@@ -287,14 +287,14 @@ response = requests.post('${emby_url}/emby/Library/Refresh', params=params, head
    qbtcount=`ps -ef |grep qbittorrent |grep -v "grep" |wc -l` 
    if [ 0==$qbtcount ]; then 
    echo -e "${green}开始安装宿主机版qbittorrent${plain}"
-   wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/x86_64-qbittorrent-nox &&
+   wget -qO "/usr/local/bin/x86_64-qbittorrent-nox" https://github.com/userdocs/qbittorrent-nox-static/releases/latest/download/x86-qbittorrent-nox &&
    chmod 700 "/usr/local/bin/x86_64-qbittorrent-nox" &&
    echo "[Unit]" > /etc/systemd/system/qbit.service &&
    echo "Description=qBittorrent Service" >> /etc/systemd/system/qbit.service &&
    echo "After=network.target nss-lookup.target" >> /etc/systemd/system/qbit.service &&
    echo "[Service]" >> /etc/systemd/system/qbit.service &&
    echo "UMask=000" >> /etc/systemd/system/qbit.service &&
-   echo "ExecStart=/usr/local/bin/x86_64-qbittorrent-nox --profile=/usr/local/etc" >> /etc/systemd/system/qbit.service &&
+   echo "ExecStart=/usr/local/bin/x86-qbittorrent-nox --profile=/usr/local/etc" >> /etc/systemd/system/qbit.service &&
    echo "[Install]" >> /etc/systemd/system/qbit.service &&
    echo "WantedBy=multi-user.target" >> /etc/systemd/system/qbit.service &&
    systemctl enable qbit &&
