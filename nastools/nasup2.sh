@@ -11,6 +11,8 @@ tg_bot_token=""
 rclone_exclude="其它/"  #rclone上传排除的目录
 remote_username=""
 remote_password=""
+remote_ip=""
+remote_port=""
 
 
 #emby扫库
@@ -23,7 +25,7 @@ remote_password=""
         echo "[$(date "+%Y-%m-%d %H:%M:%S")] emby开始扫库${emby_dir}${b}..." >> ${log_dir} 
 
         encoded_param=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$b'))")
-        c=`curl -u ${remote_username}:${remote_password} "http://130.162.234.133:18180/execute-script?code_path=/home/remote/link.py&param=${encoded_param}"`
+        c=`curl -u ${remote_username}:${remote_password} "http://${remote_ip}:${remote_port}/execute-script?code_path=/home/remote/link.py&param=${encoded_param}"`
 
         [[ "${c}" =~ 200 ]] && echo "[$(date "+%Y-%m-%d %H:%M:%S")] ${c},emby扫库成功${b}！！！" >> ${log_dir} \
         || echo "[$(date "+%Y-%m-%d %H:%M:%S")] ${c},emby扫库失败${b}！！！"  >> ${log_dir}  
