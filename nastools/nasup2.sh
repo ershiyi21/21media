@@ -25,7 +25,7 @@ remote_port=""
         echo "[$(date "+%Y-%m-%d %H:%M:%S")] emby开始扫库${emby_dir}${b}..." >> ${log_dir} 
 
         encoded_param=$(python3 -c "import urllib.parse; print(urllib.parse.quote('$b'))")
-        c=`curl -u ${remote_username}:${remote_password} "http://${remote_ip}:${remote_port}/execute-script?code_path=/home/remote/link.py&param=${encoded_param}"`
+        c=`curl -u ${remote_username}:${remote_password} =I "http://${remote_ip}:${remote_port}/execute-script?code_path=/home/remote/link.py&param=${encoded_param}" | grep -Fi HTTP | awk '{print $2}'`
 
         [[ "${c}" =~ 200 ]] && echo "[$(date "+%Y-%m-%d %H:%M:%S")] ${c},emby扫库成功${b}！！！" >> ${log_dir} \
         || echo "[$(date "+%Y-%m-%d %H:%M:%S")] ${c},emby扫库失败${b}！！！"  >> ${log_dir}  
