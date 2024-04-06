@@ -1,0 +1,123 @@
+#========以下识别词由 RemoteIdentifiers 插件添加========#
+#猎冰
+The.Hunter.S01(?=.*(?:2024)) => 猎冰.The.Hunter.2024.S01
+#天龙八部
+Heaven.Dragon.the.Eighth.Episode.2003 => 天龙八部 (2003)
+#大王别慌张
+My Dear King Theatre => 大王别慌张
+#超异能族
+Moving.S01 => 超异能族 S01
+#仙剑奇侠传三
+仙剑奇侠传三.Chinese.Paladin.3.S03 => 仙剑奇侠传三.Chinese.Paladin.3.S01
+#婚后事
+Happily.Ever.After.2024 => 婚后事
+#南来北往
+Always.on.the.Move=>南来北往
+#黑镜
+Black Mirror 2011-2019 => 黑镜S01-S05
+#智能时代
+Zhi Neng Shi Dai S01 2023 => 智能时代  第一季
+#蜘蛛夫人：超感觉醒
+Madame.Web => 蜘蛛夫人：超感觉醒
+#三体（2024）
+3.Body.Problem.2024 => 三体.2024
+#请回答1988
+Reply 1988 => 请回答1988
+#天机算
+Tin.Gei.Suen.2007 => {[tmdbid=3125;type=tv]}
+#超意神探
+Suspect.2024 => 超意神探
+#青云志
+Noble.Aspirations => 青云志
+Text.
+#名侦探柯南 【银色子弹 BT】
+(?<=SBSUB.*DR.*?)- => part
+\[CHS\_CHT\_JasP\]\(\w{8}\)
+\[CHT\_JP\]\(\sacascw{8}\)
+\[CHS\_JP\]\(\ws{8}\)
+\[SBSUB\]\[CONcAN\]\[DR => [银色子弹字幕组][名侦探柯南][S01E
+\[SBSUB\]\[CONAN\]\[ => [银色子弹字幕组][名侦探柯南][S01E
+#名侦探柯南 【APTX4869 BT】
+\[CHS\_CHT\_casJPN\]\(\w{8}\)
+\[APTX4869\]\[CONAN\]\[ => [APTX4869][名侦探柯南][S01E
+\[APTX4869&COcascNANS\]\[CONAN\]\[ => [APTX4869][名侦探柯南][S01E
+ 
+#万界仙踪
+ 
+ 
+# 笨蛋测验召唤兽第二季
+# 兼容名称[Yousei-raws] Baka to Test to Shoukanjuu Ni! 08 [BDrip 1920x1080 x264 FLAC].mkv
+Baka to Test to Shoukanjuu Ni! (\d{2,3}) => Baka to Test to Shoukanjuu S02 E\1
+# 笨蛋测验召唤兽第一季
+# 兼容名称[Yousei-raws] Baka to Test to Shoukanjuu 12 [BDrip 1920x1080 x264 FLAC].mkv
+Baka to Test to Shoukanjuu (\d{2,3}) => Baka to Test to Shoukanjuu S01 E\1
+Text.
+ 
+
+#nastools通用
+[Douro Mainland][2019]
+年番
+Stellar.Transformation.
+[【](Fin|END)[】]|(?:|\s|\s-\s)(Fin|END)(?=\])|(?<=\d{1,2})(Fin|END)
+Novoland Eagle Flag => 九州缥缈录
+The Legend and the Hero => 武庚纪
+Hua Jiang Hu Zhi Bu Liang Ren => A Portrait of Jianghu : Bad Guys
+仙武传 => Banished Disciple's Counterattack
+(?<=Swallowed Star)(?=\[(?:2[7-9]|[3-5][0-9]))\t => 11
+Fights Break SphereⅤ => Fights Break Sphere
+The.Legend.of.Qin.5.Complete => 秦时明月.2007.第五季
+The Three-Body Problem => 三体
+The Outcast 5th Season => 一人之下
+(?<=[[【].*?(?:组|組|sub|S(?:UB|ub|tudio)|Raw(?:|s)|社)[\]】])(?:(?:\[|【|\★|)\d{1,2}月新番(?:\]|\】|\★|)|)[[\【](.*?)[\]】] => \1
+(?<=\[|\s)4[k|K](?=\]|\s) => 2160p
+2023[\.|\s]2160p => 2160p 2023
+GM-Team.+国漫.+吞噬星空.+Swallowed Star.+2021 => GM-Team][Swallowed Star][吞噬星空][第二季 <第二季> <> AVC >> EP-26
+One Hundred Thousand Years of Qi Refining => 镖人
+
+#斗罗大陆2
+斗罗大陆.Soul.Land.S02 => 斗罗大陆2：绝世唐门
+Soul Land 2023 S02E => 斗罗大陆2：绝世唐门 2023 S01E
+斗罗大陆2绝世唐门.Soul.Land.2023.S02 => 斗罗大陆2：绝世唐门
+Soul Land S02E => 斗罗大陆2：绝世唐门 S01E
+Soul Land Ⅱ => Soul Land 2
+
+#第一序列 (2023)
+The First Order => 第一序列
+
+#山海际会 (2023)
+M&S Organization => 山海际会
+
+#凡人修仙传 (2020)
+.A.Record.Of.Mortals.Journey.To.Immortality
+A Record Of Mortals Journey To Immortality => 凡人修仙傳
+凡人修仙传 => 凡人修仙傳
+
+#政宗君的复仇 (2017)
+[Comicat&Lemonade][Masamune-kun no Revenge R][ => 政宗君的复仇 S02E
+
+#恶魔法则 (2023)
+Law Devil => 恶魔法则
+
+#王者大师兄 (2023)
+Wang Zhe Da Shi Xiong =>  	王者大师兄
+
+#百炼成神 (2022)
+Apotheosis.+S02 => Apotheosis S01 && Apotheosis.+S01 <> 2160p >> EP+52
+
+#吞噬星空 (2020)
+Swallowed.+Star.+S04 => Swallowed Star S01 && S01 <> 2160p >> EP+85
+
+#王者荣耀：荣耀之章 (2024)
+Honor of Kings: Chapter of Glory => 王者荣耀：荣耀之章
+王者荣耀：荣耀之章碎月篇 => 王者荣耀：荣耀之章
+Honor of Kings Chapter of Glory => 王者荣耀：荣耀之章
+王者荣耀：荣耀之章.Honor.of.Kings.Chapter.of.Glory => 王者荣耀：荣耀之章
+
+#师兄啊师兄 (2023)
+Big Brother S01 => 师兄啊师兄 S01
+Big.Brother.S01 => 师兄啊师兄.S01
+My.+Senior.+Brother.+is.+Too.+Steady.+S02 => My Senior Brother is Too Steady S01
+
+#诛仙 (2022)
+Jade.Dynasty => 诛仙
+诛仙.诛仙 => 诛仙
