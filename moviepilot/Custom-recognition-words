@@ -43,8 +43,7 @@ Text.
 \[APTX4869&COcascNANS\]\[CONAN\]\[ => [APTX4869][名侦探柯南][S01E
  
 #万界仙踪
- 
- 
+
 # 笨蛋测验召唤兽第二季
 # 兼容名称[Yousei-raws] Baka to Test to Shoukanjuu Ni! 08 [BDrip 1920x1080 x264 FLAC].mkv
 Baka to Test to Shoukanjuu Ni! (\d{2,3}) => Baka to Test to Shoukanjuu S02 E\1
@@ -70,7 +69,11 @@ The Three-Body Problem => 三体
 The Outcast 5th Season => 一人之下
 (?<=[[【].*?(?:组|組|sub|S(?:UB|ub|tudio)|Raw(?:|s)|社)[\]】])(?:(?:\[|【|\★|)\d{1,2}月新番(?:\]|\】|\★|)|)[[\【](.*?)[\]】] => \1
 (?<=\[|\s)4[k|K](?=\]|\s) => 2160p
+2022[\.|\s]2160p => 2160p 2022
 2023[\.|\s]2160p => 2160p 2023
+2024[\.|\s]2160p => 2160p 2024
+#(\d{4})[.\s](\d{4}p) => \2 \1 不生效
+
 GM-Team.+国漫.+吞噬星空.+Swallowed Star.+2021 => GM-Team][Swallowed Star][吞噬星空][第二季 <第二季> <> AVC >> EP-26
 One Hundred Thousand Years of Qi Refining => 镖人
 
@@ -99,7 +102,7 @@ A Record Of Mortals Journey To Immortality => 凡人修仙傳
 Law Devil => 恶魔法则
 
 #王者大师兄 (2023)
-Wang Zhe Da Shi Xiong =>  	王者大师兄
+Wang Zhe Da Shi Xiong =>  王者大师兄
 
 #百炼成神 (2022)
 Apotheosis.+S02 => Apotheosis S01 && Apotheosis.+S01 <> 2160p >> EP+52
@@ -116,7 +119,7 @@ Honor of Kings Chapter of Glory => 王者荣耀：荣耀之章
 #师兄啊师兄 (2023)
 Big Brother S01 => 师兄啊师兄 S01
 Big.Brother.S01 => 师兄啊师兄.S01
-My.+Senior.+Brother.+is.+Too.+Steady.+S02 => My Senior Brother is Too Steady S01
+My.+Senior.+Brother.+is.+Too.+Steady.+S02 => My Senior Brother is Too Steady S01 && S01 <> 2160p >> EP+13
 
 #诛仙 (2022)
 Jade.Dynasty => 诛仙
